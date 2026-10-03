@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Momente, cadre și poziții pentru nuntă, botez, aniversare și orice eveniment — cu exemple reale.">
+<meta name="theme-color" content="#F5F3F7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#13101A" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="MomentHub">
+<meta property="og:description" content="Momente, cadre și poziții pentru nuntă, botez, aniversare și orice eveniment — cu exemple reale.">
+<meta property="og:type" content="website">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="MomentHub">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23B8235A'/%3E%3Cpath d='M18 26v-8h8M46 26v-8h-8M18 38v8h8M46 38v8h-8' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>MomentHub</title>
+<meta name="author" content="GLC_TV"><!-- © 2026 GLC_TV. All rights reserved. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=DM+Mono:wght@500&display=swap">
+<style>
+[hidden]{display:none!important}
+img{max-width:100%}
+/* Layout: one phone-width column, sticky header, four bottom tabs, bottom sheets for detail. Same shell as GymHub. */
+:root{
+  --bg:#F5F3F7;--card:#FFFFFF;--well:#F6EAF0;--ink:#1D1828;--mute:#716A80;--line:#E5E0EA;
+  --acc:#B8235A;--accI:#FFFFFF;--gold:#9A6A00;--rec:#D93A40;
+  --ui:Manrope,-apple-system,system-ui,"Segoe UI",Roboto,sans-serif;
+  --tc:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13101A;--card:#1E1A27;--well:#2B2030;--ink:#F1EEF6;--mute:#9B94AA;--line:#2D2838;--acc:#FF7FAE;--accI:#2B0716;--gold:#F2B33D;--rec:#FF6369;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13101A;--card:#1E1A27;--well:#2B2030;--ink:#F1EEF6;--mute:#9B94AA;--line:#2D2838;--acc:#FF7FAE;--accI:#2B0716;--gold:#F2B33D;--rec:#FF6369;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 var(--ui);padding-bottom:104px}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;transition:transform .15s,opacity .15s,background .25s,color .25s}
+button:active{transform:scale(.96);opacity:.85}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+h1{font-size:22px;margin:0;font-weight:800;letter-spacing:-.02em}
+h2{font-size:20px;margin:0 0 12px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+h3{font-size:17px;margin:20px 0 8px;font-weight:800;text-wrap:balance}
+p{margin:0}
+small{color:var(--mute)}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px 8px;max-width:560px;margin:auto;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%)}
+header small{display:block;font-size:13px}
+.lg{border:1.5px solid var(--line);border-radius:99px;padding:6px 14px;font-weight:700;background:var(--card)}
+main{padding:8px 20px 12px;max-width:560px;margin:auto}
+#v>h2:first-child{font-size:32px;letter-spacing:-.02em;margin-bottom:4px}
+.go{animation:pg .4s cubic-bezier(.32,.72,0,1)}
+@keyframes pg{from{opacity:0;transform:translateY(8px) scale(.99)}}
+#ft{max-width:560px;margin:8px auto 0;padding:0 20px 8px;text-align:center;color:var(--mute);font-size:12px}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;white-space:nowrap;padding:8px 14px;border-radius:99px;background:var(--card);font-weight:600;font-size:14px}
+.chip.on{background:var(--ink);color:var(--bg)}
+.seg{display:flex;background:color-mix(in srgb,var(--ink) 8%,transparent);border-radius:11px;padding:2px;gap:2px;margin:10px 0 14px}
+.seg button{flex:1;min-width:0;padding:8px 4px;border-radius:9px;font-size:13px;font-weight:600;color:var(--mute)}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+
+.callout{background:color-mix(in srgb,var(--acc) 11%,var(--card));border-radius:16px;padding:14px 16px;margin:6px 0 14px}
+.callout p{margin-top:6px}
+.kick{display:flex;align-items:center;gap:8px;font:500 12px/1.2 var(--tc);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--rec);animation:bl 1.4s infinite}
+@keyframes bl{50%{opacity:.2}}
+.nt{display:block;font-size:19px;font-weight:800;line-height:1.25;margin-top:8px;text-wrap:balance}
+.cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{width:100%;padding:14px;border-radius:14px;background:var(--acc);color:var(--accI);font-weight:700;margin-top:16px}
+.btn.s{width:auto;margin:0;padding:10px 14px}
+.btn.gh{background:var(--card);color:var(--ink)}
+.btn.dn{background:color-mix(in srgb,var(--ink) 10%,var(--card));color:var(--ink)}
+.ghost{color:var(--acc);font-weight:700;padding:8px 0}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+.stat{background:var(--card);border-radius:14px;padding:10px 6px;text-align:center}
+.stat b{display:block;font-size:22px;font-variant-numeric:tabular-nums}
+.stat b span{font-size:14px;color:var(--mute);font-weight:700}
+.stat small{font-size:12px}
+.bar{height:6px;border-radius:99px;background:color-mix(in srgb,var(--ink) 10%,transparent);overflow:hidden;margin:10px 0}
+.bar i{display:block;height:100%;background:var(--acc);border-radius:99px;transition:width .4s}
+
+.group{background:var(--card);border-radius:16px;overflow:hidden;margin:8px 0 12px}
+.mrow{display:flex;align-items:stretch;border-bottom:1px solid var(--line)}
+.group>:last-child{border-bottom:0}
+.ck{flex:none;width:54px;display:grid;place-items:center}
+.ck i{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;transition:background .2s,border-color .2s}
+.ck svg{width:14px;height:14px;fill:none;stroke:var(--accI);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.mrow.done .ck i{background:var(--acc);border-color:var(--acc)}
+.mrow.done .ck svg{opacity:1}
+.mb{flex:1;min-width:0;display:flex;align-items:center;gap:8px;text-align:left;padding:12px 14px 12px 0}
+.mb>span{flex:1;min-width:0}
+.mb b{display:block;font-weight:700;line-height:1.3}
+.mb small{display:block;font-size:13px;margin-top:2px}
+.mrow.done .mb b{color:var(--mute);text-decoration:line-through;text-decoration-thickness:1px}
+.must{color:var(--gold);font-weight:700}
+.chev{flex:none;margin-left:8px;font-style:normal;font-size:22px;line-height:1;color:var(--mute)}
+
+.row{display:flex;align-items:center;width:100%;text-align:left;padding:10px 14px 10px 10px;margin-bottom:8px;border-radius:14px;background:var(--card)}
+.row>span:not(.th){flex:1;min-width:0}
+.row b{display:block;font-weight:700}
+.row small{display:block;font-size:13px;line-height:1.35;margin-top:2px}
+.th{flex:none;width:76px;height:61px;border-radius:12px;background:var(--well);display:grid;place-items:center;margin-right:12px;overflow:hidden}
+.th svg{width:100%;height:100%;display:block}
+.th.big{width:100%;height:auto;aspect-ratio:100/80;margin:4px 0 0;border-radius:18px}
+
+.dg{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.6}
+.st-k{stroke:var(--ink)}.st-a{stroke:var(--acc)}.st-m{stroke:var(--mute)}.st-c{stroke:var(--card)}
+.fl-k{fill:var(--ink)}.fl-a{fill:var(--acc)}.fl-m{fill:var(--mute)}.fl-c{fill:var(--card)}.fl-r{fill:var(--rec)}
+.fov{fill:var(--acc);opacity:.18}
+.tx{fill:var(--ink);font:500 7.5px var(--tc)}
+
+#sheet{position:fixed;inset:0;z-index:5;background:rgba(10,8,16,.5);display:flex;align-items:flex-end;animation:fd .25s;transition:background .24s}
+#sheet.fo{background:rgba(10,8,16,0)}
+@keyframes fd{from{opacity:0}}
+@keyframes up{from{transform:translateY(100%)}}
+@keyframes dn{to{transform:translateY(100%)}}
+.panel{background:var(--bg);width:100%;max-width:560px;margin:auto auto 0;max-height:90%;overflow:auto;border-radius:22px 22px 0 0;padding:16px 20px calc(24px + env(safe-area-inset-bottom,0px))}
+.panel.in{animation:up .4s cubic-bezier(.32,.72,0,1)}
+.panel.out{animation:dn .24s ease-in forwards}
+.panel::before{content:"";display:block;width:38px;height:5px;border-radius:3px;background:color-mix(in srgb,var(--ink) 20%,transparent);margin:-6px auto 10px}
+.ph{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.ph h2{margin:4px 0 0;font-size:24px;line-height:1.2}
+.x{flex:none;width:36px;height:36px;border-radius:50%;font-size:22px;line-height:1;color:var(--mute);background:var(--card)}
+.sec{margin-top:16px}
+.sec h3{margin:0 0 4px;font:500 12px/1.2 var(--tc);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.sec p{max-width:60ch}
+.say{font-size:18px;font-weight:700;line-height:1.35}
+
+.lks{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 2px}
+.lk{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:12px;background:var(--card);color:var(--ink);font-weight:700;font-size:14px;text-decoration:none}
+.lk::after{content:"↗";color:var(--acc);font-weight:800}
+.lk:active{opacity:.7}
+.lkl{color:var(--mute);font-size:14px;font-weight:600}
+a.row{text-decoration:none;color:inherit}
+.row,.srow,.mb,.lk{transition:background .25s}
+.row:active,.srow:active,.mb:active,.lk:active{background:color-mix(in srgb,var(--ink) 8%,var(--card))}
+header{transition:box-shadow .25s}header.sc{box-shadow:0 1px 0 var(--line)}
+.car{position:relative;margin:4px 0 0}
+.cnav{position:absolute;top:calc(50% - 32px);width:40px;height:40px;border-radius:50%;background:rgba(10,8,16,.55);color:#fff;font-size:26px;line-height:1;display:grid;place-items:center;padding:0 0 3px}
+.cnav.pv{left:8px}.cnav.nx{right:8px}
+.slides{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px}
+.slides::-webkit-scrollbar{display:none}
+.sl{position:relative;flex:none;width:100%;margin:0;scroll-snap-align:center}
+.sl .th.big{margin:0}
+.panel>.sl{margin-top:10px}
+.sl img{display:block;width:100%;aspect-ratio:100/80;object-fit:cover;border-radius:18px;background:var(--well)}
+.sl figcaption{position:absolute;left:10px;right:10px;bottom:10px;display:flex}
+.ph{position:relative}
+.slides{align-items:flex-start}
+.sl .cap{padding:10px 4px 0}
+.sl .cap b{display:block;font-size:16px;line-height:1.3}
+.sl .cap p{color:var(--mute);margin-top:3px;line-height:1.45}
+.car.g .cnav{top:0;margin-top:calc(40% - 20px)}
+.cnt{position:absolute;top:10px;right:10px;padding:3px 9px;border-radius:999px;background:rgba(10,8,16,.62);color:#fff;font:500 12px/1.4 var(--tc);font-variant-numeric:tabular-nums;pointer-events:none}
+.sl figcaption a{max-width:100%;padding:4px 8px;border-radius:8px;background:rgba(10,8,16,.62);color:#fff;font:500 11px/1.3 var(--tc);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sl img{height:auto}
+.cdots{display:flex;justify-content:center;gap:2px;margin-top:4px}
+.cdots button{width:22px;height:22px;display:grid;place-items:center;padding:0}
+.cdots button::before{content:"";width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--ink) 22%,transparent);transition:background .25s,transform .25s}
+.cdots button.on::before{background:var(--acc);transform:scale(1.25)}
+.chev.out{font-size:17px;color:var(--acc);font-weight:800}
+.srow .lks{margin:0;justify-content:flex-end}
+.srow .lk{background:var(--well);padding:8px 12px}
+.srow>b{flex:1;min-width:0}
+.card{background:var(--card);border-radius:16px;padding:14px 16px;margin-top:8px}
+.card b{display:block}
+.card p{color:var(--mute);margin-top:4px}
+.sgr{display:flex;gap:14px;align-items:flex-start;padding:12px 16px;border-bottom:1px solid var(--line)}
+.sgr>span:last-child{flex:1;min-width:0}
+.sgr b{display:block}
+.sgr small{display:block;font-size:13px;line-height:1.35;margin-top:2px}
+.tc{flex:none;width:96px;font:500 13px/1.5 var(--tc);font-variant-numeric:tabular-nums}
+.tc em{display:block;font-style:normal;color:var(--mute);font-size:12px}
+.note{color:var(--mute);font-size:14px;margin:8px 0}
+.srow{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}
+.tg{flex:none;width:51px;height:31px;border-radius:99px;background:color-mix(in srgb,var(--ink) 18%,transparent);position:relative;transition:background .25s}
+.tg::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.32,.72,0,1)}
+.tg.on{background:var(--acc)}.tg.on::after{transform:translateX(20px)}
+.etq{margin:0;padding:0;list-style:none}
+.etq li{padding:8px 0;border-top:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.etq li:first-child{border-top:0;padding-top:0}
+.etq li:last-child{padding-bottom:0}
+
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:4;display:flex;background:color-mix(in srgb,var(--card) 80%,transparent);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border-top:1px solid var(--line);padding:6px 12px calc(6px + env(safe-area-inset-bottom,0px))}
+.tab{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;font-weight:700;line-height:1.1;padding:8px 2px 7px;color:var(--mute)}
+.tab svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tab.on{color:var(--acc)}
+.ind{position:absolute;left:12px;top:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px));width:calc((100% - 24px)/4);border-radius:14px;background:color-mix(in srgb,var(--acc) 14%,transparent);transform:translateX(calc(var(--i,0)*100%));transition:transform .4s cubic-bezier(.32,.72,0,1);pointer-events:none}
+#toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:20;max-width:calc(100% - 32px);text-align:center}
+#toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div><h1>MomentHub</h1><small id="tg"></small></div><button class="lg" id="lg"></button></header>
+<main id="v"></main>
+<footer id="ft"></footer>
+<div id="sheet" hidden></div>
+<div id="toast" role="status"></div>
+<nav class="tabs"><i class="ind"></i><button class="tab" data-t="mo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17M12 6h8M12 12h8M12 18h8"/></svg><span></span></button><button class="tab" data-t="sh"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="3"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span></span></button><button class="tab" data-t="po"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="7" r="2.5"/><circle cx="16" cy="7" r="2.5"/><path d="M4 20v-4a4 4 0 0 1 8 0v4M12 20v-4a4 4 0 0 1 8 0v4"/></svg><span></span></button><button class="tab" data-t="ed"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 9.5h18M8 5L6.5 9.5M13 5l-1.5 4.5M18 5l-1.5 4.5M10.5 12.5v4l3.5-2z"/></svg><span></span></button></nav>
+<script>
+{
+const SHOTS=`f1|fr|Cadru larg|Wide shot|La început și la sfârșit, ca să arăți unde ești și câtă lume e.|At the start and the end, to show where you are and how many people came.|Dă-te câțiva pași în spate sau treci pe lentila 0,5×. Ține orizontul drept și lasă oamenii mici în cadru.|Step back or switch to the 0.5× lens. Keep the horizon level and let people stay small in the frame.|Doar cadre largi. Fără apropieri, filmul pare făcut de la distanță.|Only wide shots. Without closer ones the film feels distant.|wedding wide shot venue
+f2|fr|Cadru mediu|Medium shot|Pentru oameni care vorbesc, dansează sau se îmbrățișează. E cadrul de bază.|For people talking, dancing or hugging. This is your default shot.|Încadrează de la talie în sus. Lasă puțin spațiu deasupra capului.|Frame from the waist up. Leave a little space above the head.|Tăiatul la încheieturi: genunchi, glezne, mâini. Taie la talie sau la mijlocul coapsei.|Cropping at joints: knees, ankles, wrists. Crop at the waist or mid-thigh instead.|wedding couple medium shot
+f3|fr|Prim-plan|Close-up|Pentru emoții: lacrimi, râs, priviri.|For emotion: tears, laughter, glances.|Apropie-te sau folosește lentila 2×. Pune ochii pe linia de sus a grilei.|Move closer or use the 2× lens. Place the eyes on the top grid line.|Zoomul din degete, de la distanță. Imaginea iese neclară și tremurată.|Pinch zoom from far away. The picture comes out soft and shaky.|bride close up portrait emotion
+f4|fr|Detaliu|Detail shot|Verighete, flori, pahare, mâini, tort, invitație. Detaliile leagă scenele între ele la montaj.|Rings, flowers, glasses, hands, cake, invitation. Details connect scenes in the edit.|Apropie-te la o palmă de obiect, atinge ecranul ca să focalizezi și mișcă telefonul foarte încet.|Get a hand's width from the object, tap to focus and move the phone very slowly.|Prea aproape, iar telefonul nu mai focalizează. Dă-te puțin înapoi.|Too close, and the phone can't focus. Pull back a little.|wedding rings detail shot
+f5|fr|Peste umăr|Over the shoulder|La discuții, jurăminte, dans. Cel care se uită simte că e acolo.|During conversations, vows, dancing. The viewer feels present.|Stai în spatele unei persoane și lasă-i umărul neclar într-o margine. Focalizează pe cel din față.|Stand behind one person and keep their shoulder blurred at the edge. Focus on the person facing you.|Umărul acoperă jumătate din cadru. Ajunge o treime.|The shoulder covers half the frame. A third is enough.|over the shoulder shot wedding
+f6|fr|Cadru în cadru|Frame within a frame|Când vrei un cadru care arată a film: mirii văzuți printr-o ușă, printre flori sau printre invitați.|When you want a cinematic shot: the couple seen through a doorway, flowers or the crowd.|Pune ceva aproape de lentilă, pe margini, și lasă subiectul la mijloc, în lumină.|Put something close to the lens at the edges and keep the subject in the middle, in the light.|Telefonul focalizează pe obiectul din față. Atinge ecranul pe subiect.|The phone focuses on the foreground object. Tap the subject on the screen.|wedding photo framed through doorway
+a1|an|La nivelul ochilor|Eye level|Pentru aproape orice. E unghiul cel mai natural.|For almost anything. It's the most natural angle.|Ține telefonul la înălțimea ochilor celui filmat, nu ai tăi. Pentru cei așezați, lasă-te pe un genunchi.|Hold the phone at your subject's eye height, not yours. For seated people, drop to one knee.|Filmat mereu din picioare, de la înălțimea ta. Toate cadrele ies la fel.|Always shooting standing, at your own height. Every shot looks the same.|wedding guest portrait eye level
+a2|an|De jos|Low angle|La dans, la horă, la intrări. Oamenii par mai impunători, iar tavanul și luminile intră în cadru.|Dancing, the hora, entrances. People look more imposing and the ceiling and lights get into the frame.|Coboară telefonul la nivelul genunchilor și înclină-l ușor în sus. Întoarce-l cu lentila în jos ca să ajungă aproape de podea.|Lower the phone to knee height and tilt it up slightly. Flip it lens-down to get closer to the floor.|Prea aproape de față, de jos. Nimănui nu-i stă bine așa.|Too close to the face from below. It flatters nobody.|low angle wedding dance floor
+a3|an|De sus|High angle|Pentru ringul plin, mese, grupuri mari.|For a full dance floor, tables, large groups.|Ridică telefonul deasupra capului sau urcă pe o treaptă. Înclină-l în jos, cam la 45 de grade.|Raise the phone above your head or step up on a stair. Tilt it down about 45 degrees.|Urcatul pe scaune în mijlocul petrecerii. Caută o scară sau un balcon.|Climbing on chairs mid-party. Look for stairs or a balcony.|wedding dance floor from above
+a4|an|Perpendicular de sus|Top-down|Pentru masă, invitații, verighete, farfurii, mâini care ciocnesc.|For the table, invitations, rings, plates, clinking hands.|Ține telefonul paralel cu masa, exact deasupra obiectelor, și păstrează marginile mesei drepte în cadru.|Hold the phone parallel to the table, right above the objects, and keep the table edges straight in the frame.|Umbra ta peste obiecte. Mută-te astfel încât lumina să vină din lateral.|Your own shadow over the objects. Move so the light comes from the side.|wedding flat lay invitation rings
+a5|an|Din spate|From behind|Pentru intrări, plecări și cadrul de final.|For entrances, exits and the closing shot.|Mergi la doi pași în spatele lor și lasă să se vadă spre ce se îndreaptă.|Walk two steps behind them and show what they're heading toward.|Prea multe cadre cu spatele. Unul sau două ajung.|Too many shots of backs. One or two is plenty.|bride and groom walking away from behind
+m1|mv|Cadru fix|Locked-off shot|La jurăminte, discursuri, tort. Orice moment în care se întâmplă ceva important.|Vows, speeches, the cake. Any moment where something important happens.|Ține telefonul cu două mâini, coatele lipite de corp, și numără până la 10. Sprijină-te de un perete sau de o masă.|Hold the phone with both hands, elbows tucked in, and count to 10. Lean on a wall or a table.|Oprești după 3 secunde. La montaj nu ai de unde tăia.|Stopping after 3 seconds. You'll have nothing to trim from.|wedding vows ceremony video
+m2|mv|Apropiere|Push-in|Pentru detalii și decor: tortul, masa, aranjamentele.|For details and decor: the cake, the table, the arrangements.|Mergi încet spre subiect, cu genunchii ușor îndoiți. Trei-patru pași ajung.|Walk slowly toward the subject with knees slightly bent. Three or four steps is enough.|Zoom din degete în loc de pași. Mișcarea iese sacadată.|Pinch-zooming instead of walking. The move comes out jerky.|push in shot wedding decor b-roll
+m3|mv|Rotire în jurul lor|Orbit|La dansul mirilor și la ședința foto. E cadrul care arată cel mai mult a film.|First dance and the photo session. It's the most cinematic shot you can get.|Ține-i în mijlocul ecranului și mergi în cerc în jurul lor, cu pași laterali mici. Un sfert de cerc ajunge.|Keep them centered and walk a circle around them with small side steps. A quarter circle is enough.|Prea repede. La viteza potrivită ți se pare că abia te miști.|Too fast. The right speed feels like you're barely moving.|orbit shot wedding couple gimbal
+m4|mv|Urmărire|Tracking|La intrări, la mersul spre altar, la alaiuri.|Entrances, walking down the aisle, processions.|Mergi în același ritm cu ei, din lateral sau cu spatele, din fața lor. Roagă pe cineva să te ghideze când mergi cu spatele.|Walk at their pace, beside them or backwards in front of them. Ask someone to guide you when walking backwards.|Pași mari. Fă pași mici, de pe călcâi pe vârf.|Long strides. Take small heel-to-toe steps.|tracking shot bride walking down the aisle
+m5|mv|Panoramare|Pan|Ca să arăți toată sala, toată masa sau tot ringul.|To show the whole room, the whole table or the whole dance floor.|Stai pe loc, cu picioarele fixe, și rotește doar trunchiul, încet, într-o singură direcție.|Stand still with your feet planted and turn only your torso, slowly, in one direction.|Stânga, dreapta și înapoi în același cadru. Alege o direcție și oprește-te.|Left, right and back again in one shot. Pick one direction and stop.|panning shot wedding reception
+m6|mv|Dezvăluire|Reveal|Pentru primul cadru al clipului sau pentru intrarea într-un loc nou.|For the opening shot or when entering a new place.|Începe cu lentila ascunsă după un stâlp, flori sau umărul cuiva și alunecă lateral până apare subiectul.|Start with the lens hidden behind a pillar, flowers or someone's shoulder and slide sideways until the subject appears.|Subiectul nu e pregătit când ieși din ascunzătoare. Uită-te întâi unde e.|The subject isn't ready when you slide out. Check where they are first.|reveal shot wedding video
+m7|mv|Încetinitor|Slow motion|Orez, petale, confetti, voal, rochie care se învârte, artificii, pahare ciocnite.|Rice, petals, confetti, veil, a twirling dress, sparklers, clinking glasses.|Treci pe modul Slo-mo sau filmează la 60 fps și încetinește la jumătate la montaj. Ai nevoie de lumină multă.|Switch to Slo-mo, or shoot at 60 fps and slow it to half speed in the edit. You need plenty of light.|Tot evenimentul la încetinitor. Pierzi sunetul și umpli memoria.|Shooting everything in slow motion. You lose the sound and fill your storage.|wedding slow motion confetti exit
+l1|lt|Contralumină|Backlight|La apus sau în fața unei ferestre mari. Obții siluete și o margine de lumină în jurul părului.|At sunset or in front of a large window. You get silhouettes and a rim of light around the hair.|Pune soarele chiar în spatele lor. Atinge ecranul pe cer și coboară expunerea până rămân doar siluetele.|Put the sun right behind them. Tap the sky on screen and lower the exposure until only silhouettes remain.|Fețe negre când voiai să se vadă. Pentru fețe, întoarce-i spre lumină.|Black faces when you wanted to see them. For faces, turn them toward the light.|wedding silhouette sunset backlight
+l2|lt|Lumina de la fereastră|Window light|La pregătiri și la detalii. E cea mai frumoasă lumină dintr-o cameră.|Getting ready and details. It's the best light in any room.|Așază omul la un pas de fereastră, întors pe jumătate spre ea. Stinge becurile din cameră.|Place the person one step from the window, half turned toward it. Switch off the room lights.|Becuri galbene aprinse lângă lumina de zi. Pielea iese portocalie.|Yellow bulbs on next to daylight. Skin turns orange.|bride getting ready window light
+l3|lt|Ora de aur|Golden hour|În ultima oră dinainte de apus. Lumina e caldă și blândă, fără umbre tari pe față.|The last hour before sunset. The light is warm and soft, with no harsh shadows on faces.|Caută ora apusului în aplicația meteo și scoate mirii afară cu 40 de minute înainte. Zece minute ajung.|Check the sunset time in your weather app and take the couple outside 40 minutes before. Ten minutes is enough.|Ședința foto la prânz, în plin soare. Dacă nu ai de ales, caută umbra.|A photo session at noon in full sun. If you have no choice, find shade.|golden hour wedding couple
+l4|lt|Luminile serii|Evening lights|La dans, la tort, la artificii. Luminile din fundal devin cercuri neclare.|Dancing, the cake, sparklers. Background lights turn into soft circles.|Pune oamenii între tine și lumini. Lasă lumânările sau artificiile să le lumineze fața și coboară puțin expunerea.|Put people between you and the lights. Let candles or sparklers light their faces and lower the exposure slightly.|Blițul telefonului. Aplatizează fețele și strică atmosfera.|The phone flash. It flattens faces and kills the mood.|wedding sparklers night bokeh`;
+
+const POSES=`c1|cu|Mers de mână|Walking hand in hand|Merg încet spre tine, uitându-se unul la altul. Tu mergi cu spatele și filmezi de la talie în sus.|They walk slowly toward you, looking at each other. You walk backwards, framing from the waist up.|„Mergeți ca la plimbare și povestiți-vă ceva.”|"Walk like you're out for a stroll and tell each other something."|bride and groom walking holding hands
+c2|cu|Frunte la frunte|Forehead to forehead|Stau față în față, cu ochii închiși. O mână pe talia ei, cealaltă îi ține mâna. Filmează din profil.|They stand facing each other, eyes closed. One hand on her waist, the other holding her hand. Shoot from the side.|„Închideți ochii și respirați adânc o dată.”|"Close your eyes and take one deep breath."|bride groom forehead to forehead
+c3|cu|Îmbrățișare din spate|Hug from behind|El o cuprinde din spate, cu obrazul lângă al ei. Amândoi se uită în aceeași parte, nu la cameră.|He wraps his arms around her from behind, cheek next to hers. Both look the same way, not at the camera.|„Uitați-vă împreună spre fereastră.”|"Look toward the window together."|groom hugging bride from behind
+c4|cu|Răsucirea|The twirl|El îi ridică mâna, ea se învârte o dată. Filmează la încetinitor, cu rochia în cadru până jos.|He lifts her hand, she spins once. Shoot in slow motion with the whole dress in frame.|„Încă o dată, mai încet.”|"Once more, slower."|groom twirling bride dress
+c5|cu|Mâinile și verighetele|Hands and rings|Mâinile lor împreunate, pe buchet sau pe rever. Apropie-te și atinge ecranul pe verighete.|Their hands together, resting on the bouquet or a lapel. Get close and tap the rings to focus.|„Țineți-vă de mână ca la plimbare.”|"Hold hands the way you do on a walk."|wedding couple hands rings close up
+c6|cu|Șoapta|The whisper|Unul îi șoptește celuilalt ceva la ureche. Râsul care urmează e adevărat. Ține filmarea pornită.|One whispers something in the other's ear. The laugh that follows is real. Keep recording.|„Spune-i la ureche ce ai mânca acum.”|"Whisper what you'd love to eat right now."|groom whispering bride laughing
+g1|gr|Pe niveluri|Staggered levels|Unii în picioare, alții așezați sau într-un genunchi. Capetele nu stau pe aceeași linie.|Some standing, some seated or kneeling. Heads are never in one straight line.|„Cei din față, jos. Apropiați-vă până vă atingeți umerii.”|"Front row, down. Squeeze in until your shoulders touch."|wedding party group photo posing levels
+g2|gr|Triunghi|Triangle|Mirii sau sărbătoritul în față, la mijloc. Ceilalți se așază în spate, pe două laturi.|The couple or the guest of honor in front, in the middle. Everyone else lines up behind, on two sides.|„Dacă nu mă vedeți pe mine, nici eu nu vă văd pe voi.”|"If you can't see me, I can't see you."|wedding family group photo posing
+g3|gr|Mers spre cameră|Walking toward the camera|Toți pe o linie, merg spre tine și vorbesc între ei. Filmează de jos, la încetinitor.|Everyone in a line, walking toward you and chatting. Shoot from low, in slow motion.|„Mergeți spre mine și nu vă uitați la cameră.”|"Walk toward me and don't look at the camera."|bridal party walking toward camera
+g4|gr|Toastul|The toast|Paharele se întâlnesc la mijloc. Filmează întâi paharele de aproape, apoi fețele.|Glasses meet in the middle. Shoot the glasses up close first, then the faces.|„La trei, ciocniți și spuneți «Noroc!»”|"On three, clink and say 'Cheers!'"|wedding guests toast glasses cheers
+g5|gr|Umăr la umăr|Arm in arm|Brațele pe umerii vecinilor, corpurile ușor întoarse spre centru.|Arms over each other's shoulders, bodies turned slightly toward the center.|„Uitați-vă la cel mai gălăgios dintre voi.”|"Look at the loudest one of you."|friends arm in arm group photo wedding
+p1|pt|Trei sferturi|Three-quarter turn|Corpul întors la 45 de grade, fața spre cameră. O mână în șold sau în buzunar.|Body turned 45 degrees, face toward the camera. One hand on the hip or in a pocket.|„Întoarce umerii spre fereastră și privirea spre mine.”|"Turn your shoulders to the window and your eyes to me."|groom portrait three quarter pose
+p2|pt|Mâini ocupate|Busy hands|Dă-i ceva de ținut: buchetul, un pahar, sacoul, voalul. Mâinile ocupate arată natural.|Give them something to hold: the bouquet, a glass, a jacket, the veil. Busy hands look natural.|„Aranjează-ți butonul de la manșetă.”|"Fix your cufflink."|bride holding bouquet portrait
+p3|pt|La fereastră|By the window|La un pas de fereastră, cu fața pe jumătate spre lumină. Umbra de pe celălalt obraz dă adâncime.|One step from the window, face half turned to the light. The shadow on the far cheek adds depth.|„Uită-te afară, ca și cum aștepți pe cineva.”|"Look outside as if you're waiting for someone."|bride window light portrait
+p4|pt|Rezemat|Leaning|Umărul sprijinit de un perete sau de un stâlp, un picior peste celălalt. Postura se relaxează singură.|Shoulder against a wall or pillar, one leg crossed over the other. The posture relaxes by itself.|„Sprijină-te ca atunci când aștepți un prieten.”|"Lean like you're waiting for a friend."|groom leaning against wall portrait
+p5|pt|Privire în afara cadrului|Looking off-frame|Pune omul pe o treime a cadrului și lasă loc liber în partea în care privește.|Place the person on one third of the frame and leave empty space on the side they're looking toward.|„Uită-te la mireasă, nu la mine.”|"Look at the bride, not at me."|bride looking away portrait
+s1|sp|Reacția, nu acțiunea|The reaction, not the action|Când toată lumea filmează tortul, tu întoarce camera spre cei care se uită.|When everyone films the cake, turn your camera to the people watching.|Nu spui nimic. Oamenii nu trebuie să simtă camera.|Say nothing. People shouldn't feel the camera.|wedding guests reaction candid laughing
+s2|sp|La nivelul copiilor|At kids' level|Lasă-te pe vine până când lentila ajunge la ochii lor. De sus, copiii par mici și pierduți.|Crouch until the lens is at their eye height. From above, kids look small and lost.|„Arată-mi cum dansezi!”|"Show me how you dance!"|flower girl candid wedding
+s3|sp|Îmbrățișarea|The hug|La sosiri și la felicitări. Fă un pas lateral ca să prinzi fața celui care îmbrățișează.|During arrivals and congratulations. Step sideways to catch the face of the person hugging.|Nu spui nimic. Stai pregătit lângă intrare.|Say nothing. Be ready near the entrance.|wedding guests hugging candid`;
+
+const EVENTS=[['w','Nuntă','Wedding',`#Pregătiri|Getting ready
+1|f4 a4 l2|Detaliile: rochia, pantofii, verighetele, invitația|The details: dress, shoes, rings, invitation|Așază-le lângă o fereastră și filmează-le înainte să înceapă agitația.|Lay them out by a window and shoot them before the rush begins.|detalii nunta rochie pantofi verighete invitatie
+1|f3 f5 l2|Gătitul miresei: machiajul, rochia, voalul|The bride getting ready: makeup, dress, veil|Prinde mâinile mamei sau ale nașei la nasturi și privirea miresei în oglindă.|Catch her mother's or godmother's hands on the buttons and the bride's eyes in the mirror.|pregatiri mireasa machiaj rochie voal
+0|f2 f4|Pregătirea mirelui: cravata, butonii, bărbieritul|The groom getting ready: tie, cufflinks, the shave|Bărbieritul mirelui e moment de râs. Filmează-i și pe prietenii din jur.|The groom's traditional shave is a moment for laughs. Film the friends around him too.|pregatiri mire barbieritul mirelui
+1|f3 f5 m1|Prima privire: mirele o vede pe mireasă|The first look: the groom sees the bride|Stai cu camera pe fața lui. Reacția durează două secunde și nu se repetă.|Keep the camera on his face. The reaction lasts two seconds and never repeats.|first look nunta mire mireasa
+0|f1 m4|Luatul nașilor și plecarea cu alaiul|Picking up the godparents and the procession|Cadru larg cu tot alaiul, apoi lăutarii și paharele ciocnite.|A wide shot of the whole procession, then the musicians and the clinking glasses.|luatul nasilor nunta alai lautari
+#Cununia|The ceremony
+0|f1 a2|Biserica sau primăria, din exterior|The church or town hall from outside|Un cadru de jos, cu toată clădirea, înainte să se strângă lumea.|One low shot of the whole building before the crowd gathers.|biserica nunta exterior
+1|f1 f3 m1|Intrarea miresei|The bride's entrance|Ocupă-ți locul din timp, lângă culoar. Întâi ea, apoi fața mirelui.|Take your spot early, next to the aisle. First her, then the groom's face.|intrarea miresei in biserica
+1|f3 f4 m1|Jurămintele, „Da”-ul și verighetele|The vows, the "I do" and the rings|Nu opri filmarea. Sunetul de aici e cel mai bun fundal pentru montaj.|Don't stop recording. The sound here is the best soundtrack for your edit.|juraminte nunta verighete
+1|f2 a1 m1|Cununiile și dansul lui Isaia|The crowns and the Dance of Isaiah|Stai pe loc și lasă-i să treacă prin cadru. Fără bliț în biserică.|Stay put and let them pass through the frame. No flash in church.|cununia religioasa cununii Isaia dantuieste
+1|m7 m4 f1|Primul sărut și ieșirea cu orez sau petale|The first kiss and the exit under rice or petals|Filmează la încetinitor, din fața lor, mergând cu spatele.|Shoot in slow motion from in front of them, walking backwards.|iesirea mirilor din biserica orez petale
+0|f3 f5|Felicitări, îmbrățișări, lacrimi|Congratulations, hugs, tears|Caută părinții și bunicii. Lacrimile lor fac filmul.|Look for parents and grandparents. Their tears make the film.|felicitari miri dupa cununie emotii
+#Ședința foto|The photo session
+1|l3 l1 m3|Mirii singuri, la ora de aur|The couple alone at golden hour|Zece minute afară, la apus, valorează cât o oră în sală.|Ten minutes outside at sunset are worth an hour indoors.|sedinta foto miri apus
+0|f2 a1|Poze cu familia și cu nașii|Family and godparents|Așază-i pe niveluri și fă două cadre: unul serios, unul în care râd.|Stagger them and take two shots: one serious, one laughing.|poze de grup nunta familie nasi
+0|m4 m7 a2|Cu prietenii|With friends|Pune-i să meargă spre tine și filmează de jos, la încetinitor.|Have them walk toward you and shoot from low, in slow motion.|poze miri cu prietenii nunta
+#Petrecerea|The reception
+0|f1 f4 m2|Salonul gol: mese, flori, lumânări, tortul|The empty room: tables, flowers, candles, cake|Ajungi înaintea invitaților. După ce se așază lumea, decorul nu mai arată la fel.|Arrive before the guests. Once people sit down, the decor never looks the same.|decor salon nunta aranjamente mese
+1|f1 m6 l4|Intrarea mirilor și paharul de șampanie|The couple's entrance and the champagne|Stai în capătul culoarului, ca să vină spre tine.|Stand at the end of the aisle so they walk toward you.|intrarea mirilor in salon sampanie
+1|m3 f2 l4|Dansul mirilor|The first dance|Începe larg, apoi rotește-te încet în jurul lor. Păstrează 20 de secunde fără întrerupere.|Start wide, then circle slowly around them. Keep 20 seconds uninterrupted.|dansul mirilor
+1|a2 m5 f1|Hora și ringul plin|The hora and the full dance floor|Intră în mijlocul horei și filmează de jos fețele care trec.|Step into the middle of the hora and shoot the passing faces from below.|hora nunta ring de dans
+0|f2 f5 m1|Discursuri și toasturi|Speeches and toasts|Filmează vorbitorul, apoi imediat reacția mirilor.|Film the speaker, then right away the couple's reaction.|discurs nunta toast
+0|m4 f2|Furatul miresei și răscumpărarea|The bride's kidnapping and the ransom|Urmărește-i pe „hoți”, apoi negocierea mirelui.|Follow the "thieves", then the groom's negotiation.|furatul miresei
+1|l4 f3 m7|Tortul și artificiile|The cake and the sparklers|Lasă artificiile să le lumineze fețele. Nu folosi blițul.|Let the sparklers light their faces. Don't use the flash.|tortul mirilor artificii
+0|f1 m7|Aruncatul buchetului și al jartierei|The bouquet and garter toss|Cadru larg din lateral, ca să încapă și mireasa, și mâinile întinse.|A wide shot from the side, so both the bride and the reaching hands fit.|aruncatul buchetului nunta
+1|f3 m1|Scoaterea voalului|Removing the veil|Moment emoționant, spre final. Prim-plan pe mireasă și pe nașă.|An emotional moment near the end. Close-up on the bride and her godmother.|scoaterea voalului mireasa
+0|f1 a5|Finalul: ultimul dans, îmbrățișări, sala goală|The ending: last dance, hugs, the empty room|Ai nevoie de un cadru de final: mirii plecând sau sala goală.|You need a closing shot: the couple leaving or the empty room.|final nunta ultimul dans`],
+['b','Botez','Christening',`#Acasă|At home
+1|f4 a4 l2|Hainele de botez, trusoul și lumânarea|The christening outfit, trousseau and candle|Întinde-le pe pat, lângă fereastră, și filmează de sus.|Lay them on the bed by a window and shoot from above.|hainute botez trusou lumanare botez
+1|f3 l2|Bebelușul în brațele părinților, înainte de plecare|The baby in the parents' arms before leaving|Prim-plan pe mânuțe și pe față, cât e liniștit.|Close-up on the little hands and face while the baby is calm.|bebelus botez cu parintii acasa
+0|f2 f5|Sosirea nașilor|The godparents arrive|Prinde îmbrățișarea de la ușă.|Catch the hug at the door.|nasi botez pregatiri acasa
+#Ședința foto a copilului|The baby's photo session
+1|f3 f4 l2|Copilul: poziții de poză|The baby: photo poses|Fă ședința acasă, lângă o fereastră, când copilul e hrănit și odihnit. Un părinte stă mereu la un braț distanță de el.|Do the session at home by a window, when the baby is fed and rested. A parent always stays within arm's reach.|sedinta foto bebelus botez
+#La biserică|At church
+0|f1 a1|Intrarea în biserică cu lumânarea|Entering the church with the candle|Cadru larg cu familia intrând.|A wide shot of the family walking in.|intrarea in biserica botez
+1|f2 f3|Nașa cu bebelușul în brațe|The godmother holding the baby|Nașa ține copilul toată slujba. Fă un cadru mediu și un prim-plan.|The godmother holds the baby through the service. Take a medium shot and a close-up.|nasa cu bebelusul botez biserica
+1|f2 m1|Scufundarea în cristelniță|The immersion in the font|Întreabă preotul dinainte unde ai voie să stai. Ai o singură încercare, deci filmează, nu fotografia.|Ask the priest beforehand where you may stand. You get one take, so film it instead of taking photos.|botez scufundare cristelnita
+1|f3 f4|Îmbrăcarea în haine noi|Dressing in the new clothes|Mâinile nașei pe hăinuțe, apoi fața bebelușului.|The godmother's hands on the tiny clothes, then the baby's face.|imbracarea bebelusului dupa botez nasa
+0|f2 m1|Mirul și înconjurarea mesei|The anointing and the walk around the table|Stai pe loc și lasă-i să treacă prin fața ta.|Stay in place and let them pass in front of you.|mirungere botez inconjurarea mesei
+1|f1 a1|Poza de familie în fața altarului|The family photo before the altar|Toți pe trepte, cu bebelușul la mijloc.|Everyone on the steps, baby in the middle.|poza de familie botez biserica
+#Petrecerea|The party
+0|f4 m2|Decorul, mărturiile, candy barul|The decor, the favors, the candy bar|Filmează-le înainte să se atingă cineva de ele.|Shoot them before anyone touches them.|decor botez marturii candy bar
+1|f3 l4|Tortul|The cake|Părinții cu bebelușul lângă tort, la lumina lumânărilor.|Parents and baby next to the cake, lit by the candles.|tort botez
+0|f3 f5|Bunicii cu nepotul|Grandparents with the baby|Bunicii uită de cameră când țin nepotul. Stai aproape și așteaptă.|Grandparents forget the camera when holding the baby. Stay close and wait.|bunici cu nepotul botez
+0|f3 m2|Bebelușul adormit, la final|The baby asleep at the end|Cadrul potrivit pentru final.|The right shot to end on.|bebelus dormind botez`],
+['a','Aniversare','Birthday',`#Înainte|Before
+0|f1 f4 m2|Decorul: baloane, cifre, masa|The decor: balloons, numbers, the table|Filmează decorul cât e întreg.|Shoot the decor while it's still intact.|decor aniversare baloane cifre
+1|f2 l2|Sărbătoritul, gata de petrecere|The guest of honor, ready to go|Un portret lângă fereastră, înainte să vină lumea.|A portrait by the window before guests arrive.|portret aniversare majorat
+#Petrecerea|The party
+1|f1 m1|Sosirea sau surpriza|The arrival or the surprise|Dacă e surpriză, pornește filmarea cu un minut înainte să se deschidă ușa.|If it's a surprise, start recording a minute before the door opens.|petrecere surpriza aniversare reactie
+0|f3 f5|Îmbrățișări și cadouri|Hugs and gifts|Filmează fața celui care primește cadoul, nu cadoul.|Film the face of the person receiving the gift, not the gift.|cadouri aniversare imbratisari
+1|f3 l4 m1|„La mulți ani” și lumânările|"Happy birthday" and the candles|Ține camera la nivelul tortului. Lumânările luminează fața cât trebuie.|Hold the camera at cake level. The candles light the face just enough.|la multi ani lumanari tort
+1|f4 f2|Tăiatul tortului|Cutting the cake|Detaliu pe cuțit și pe mâini, apoi cadru mediu.|Detail on the knife and hands, then a medium shot.|taiatul tortului aniversare
+0|f1 a2|Toastul|The toast|Cadru larg cu toate paharele ridicate.|A wide shot of every raised glass.|toast aniversare pahare
+1|a2 m5 l4|Dansul|Dancing|Intră pe ring și filmează de jos.|Step onto the dance floor and shoot from below.|dans petrecere majorat
+1|f1 a3|Poza cu toată gașca|The whole-crew photo|Fă-o devreme, cât e toată lumea prezentă și aranjată.|Take it early, while everyone is still there and looking sharp.|poza de grup aniversare prieteni
+0|f3 f2|Cei mai apropiați oameni|The closest people|Un cadru scurt cu fiecare om important pentru sărbătorit.|A short shot with each person who matters to the guest of honor.|majorat poze cu parintii si prietenii
+0|m7 f1|Finalul: baloane, confetti, ultimii rămași|The ending: balloons, confetti, the last ones standing|Baloanele de pe jos și ultimii rămași fac un final bun.|Balloons on the floor and the last ones standing make a good ending.|confetti baloane petrecere`],
+['p','Petrecere','Party',`#Înainte|Before
+0|f2|Ținutele, înainte de plecare|The outfits before heading out|Un cadru în oglindă cu toată gașca.|One mirror shot with the whole crew.|friends mirror photo party outfit
+1|m4 a5|Drumul și intrarea|The way there and the entrance|Urmărește-i din spate când intră.|Follow them from behind as they walk in.|friends walking into club night
+#În club|At the venue
+0|f1 m5|Locul: lumini, bar, decor|The place: lights, bar, decor|O panoramare lentă, înainte să se aglomereze.|A slow pan before it gets crowded.|club interior lights bar
+1|f4 m7|Cocktailuri: turnat, gheață, ciocnit|Cocktails: the pour, the ice, the clink|Turnatul și ciocnitul arată cel mai bine la încetinitor.|Pouring and clinking look best in slow motion.|bartender pouring cocktail slow motion
+1|a2 f3|DJ-ul și pupitrul|The DJ and the booth|De jos, cu luminile în spatele lui.|From below, with the lights behind the DJ.|DJ booth club low angle
+1|f1 a3 l4|Ringul, la cea mai tare melodie|The dance floor at the biggest track|Ridică telefonul deasupra capului chiar înainte de refren.|Raise the phone above your head right before the drop.|club dance floor crowd from above
+1|f3 f2|Prietenii: râsete, cântat cu voce tare|Friends: laughing, singing out loud|Stai aproape. Fețele contează mai mult decât luminile.|Stay close. Faces matter more than lights.|friends laughing singing party candid
+0|m7 l1|Confetti, fum, lasere|Confetti, smoke, lasers|Filmează la încetinitor, spre lumină.|Shoot in slow motion, toward the light.|club confetti smoke lasers
+1|f1 a1|Poza de grup|The group photo|Fă-o devreme. La final lipsește jumătate din gașcă.|Do it early. By the end half the crew is gone.|friends group photo night out
+#După|After
+0|f4|Mâncarea de după|The after-party food|Detaliu de aproape. E gluma de la finalul clipului.|A close detail. It's the joke at the end of the clip.|late night food after party
+0|a5 l3|Drumul spre casă|The way home|Din spate, cu cerul care se luminează.|From behind, with the sky getting lighter.|friends walking home sunrise after party`],
+['g','Gală','Gala',`#Înainte|Before
+1|f1 m2|Locația și brandingul: logo, banner, scenă|The venue and branding: logo, banner, stage|Logoul și scena, cât sala e goală.|The logo and the stage while the room is empty.|corporate event venue branding stage
+0|f2 f4|Primirea invitaților|Welcoming the guests|Cadru mediu la masa de primire și detaliu pe ecusoane.|A medium shot at the welcome desk and a detail of the badges.|event registration desk badges
+#Evenimentul|The event
+1|f5 f2|Discuții și strângeri de mână|Conversations and handshakes|Peste umărul cuiva, ca să prinzi fața celuilalt.|Over someone's shoulder, to catch the other person's face.|networking event handshake
+1|f2 a1 m1|Discursul principal|The keynote|Cadru fix, din lateral. Păstrează sunetul.|A locked-off shot from the side. Keep the sound.|keynote speaker conference stage
+0|f3 m5|Publicul: atenție, aplauze, râsete|The audience: attention, applause, laughter|Întoarce camera spre sală la aplauze.|Turn the camera to the audience during applause.|conference audience applause
+1|f2 f3|Premiile sau momentul special|The awards or the special moment|Strângerea de mână și zâmbetul, în prim-plan.|The handshake and the smile, in close-up.|award ceremony handshake trophy
+0|f4 a4|Cina sau bufetul|Dinner or the buffet|Farfuriile de sus, înainte să se așeze lumea.|Plates from above, before people sit down.|gala dinner table setting
+1|f1 a1|Poza de echipă|The team photo|Pe trepte sau pe scenă, pe niveluri.|On the steps or on stage, staggered.|corporate team group photo event
+#Final|Wrap-up
+0|f5 a5|În culise|Behind the scenes|Oamenii care fac evenimentul să meargă merită un cadru.|The people who make the event run deserve a shot.|event behind the scenes crew
+0|f1|Sala care se golește|The emptying room|E cadrul de final.|This is your closing shot.|empty conference hall after event`],
+['x','Orice eveniment','Any event',`#Început|Opening
+1|f1 m6|Locul, din exterior|The place from outside|Primul cadru al clipului. Arată unde ești.|The first shot of your clip. Show where you are.|event venue exterior
+0|f4 m2|Detaliile: decor, mese, flori|The details: decor, tables, flowers|Filmează-le înainte să se atingă cineva de ele.|Shoot them before anyone touches them.|event decor table flowers details
+1|f2 f5|Sosirea oamenilor|People arriving|Stai lângă intrare în prima jumătate de oră.|Stay near the entrance for the first half hour.|guests arriving event hugging
+1|f2 l2|Gazda sau sărbătoritul|The host or the guest of honor|Un portret la lumină bună, cât e încă odihnit.|A portrait in good light, while they're still fresh.|event host portrait
+#Mijloc|Middle
+1|f1 f3 m1|Momentul principal|The main moment|Un cadru larg, un prim-plan și zece secunde fără să miști telefonul.|One wide, one close-up and ten seconds without moving the phone.|event highlight moment crowd
+1|f3 f5|Reacțiile celor din jur|The reactions around|Întoarce camera spre cei care se uită.|Turn the camera to the people watching.|audience reaction candid event
+0|f4 a4|Mâncarea și paharele|The food and the glasses|De sus, înainte să înceapă lumea să mănânce.|From above, before people start eating.|event food drinks flat lay
+1|a2 m5|Dansul sau distracția|Dancing or the fun part|Intră între oameni și filmează de jos.|Get among the people and shoot from below.|people dancing party low angle
+#Final|Ending
+1|f1 a1|Poza de grup|The group photo|Fă-o devreme, cât e toată lumea.|Do it early while everyone is there.|event group photo
+1|a5 f1|Cadrul de final|The closing shot|Cineva plecând, luminile stinse, un ultim pahar.|Someone leaving, lights going out, a last glass.|end of the party empty room`]];
+
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s);
+const h=(t,a={},...k)=>{const e=document.createElement(t);for(const n in a){const v=a[n];if(v==null||v===false)continue;n=='class'?e.className=v:n=='html'?e.innerHTML=v:n.startsWith('on')?e[n]=v:e.setAttribute(n,v)}e.append(...k.flat().filter(x=>x!=null&&x!==false));return e};
+const ld=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+
+/* ---------- content ---------- */
+const SH=SHOTS.split('\n').map(l=>{const f=l.split('|');return{id:f[0],c:f[1],n:[f[2],f[3]],w:[f[4],f[5]],h:[f[6],f[7]],m:[f[8],f[9]],q:f[10]}});
+const SHI=Object.fromEntries(SH.map(s=>[s.id,s]));
+const PO=POSES.split('\n').map(l=>{const f=l.split('|');return{id:f[0],c:f[1],n:[f[2],f[3]],h:[f[4],f[5]],s:[f[6],f[7]],q:f[8]}});
+const EV=EVENTS.map(([k,ro,en,txt])=>{const ph=[],all=[];txt.split('\n').forEach(l=>{const f=l.split('|');if(l[0]=='#')ph.push({n:[f[0].slice(1),f[1]],ms:[]});else{const m={i:all.length,must:f[0]=='1',sh:f[1].split(' '),n:[f[2],f[3]],tip:[f[4],f[5]],q:f[6],ph:ph[ph.length-1]};all.push(m);m.ph.ms.push(m)}});return{k,n:[ro,en],ph,all}});
+const EVI=Object.fromEntries(EV.map(e=>[e.k,e]));
+
+const VID=[
+['Nuntă','Wedding','nunta best moments',[
+['XiWwcOD-_VQ','Nunta Best Moments','CineWedding Films'],
+['wGH_u2Fcbrg','Clip Nunta, Wedding Best Moments Constanta Romania Filmare 4K Ultra HD','Lasting Events'],
+['4r_-lC3VeyE','Cameraman nunta Ploiesti - Nunta Best Moments','CineWedding Films']]],
+['Cununie civilă','Civil ceremony','cununie civila best moments',[
+['DigiwzBBjpY','Best Moments Cununie Civila 15 Noiembrie','EVANdersar Photography'],
+['HWEWVYSy7DU','Filmare Cununie Civila in aer liber - Alexandra & Irinel','FOTOTIME | Fotograf de nuntă'],
+['odZAQZ47sXY','Clip Cununie Civila - Ioana & Catalin | Filmare Nunta 4K Bucuresti Casa Anke','Casa Anke'],
+['TKRTQwN1fyM','Bianca & Andrei - Cununie Civila','Caras Ionut']]],
+['Botez','Christening','botez best moments',[
+['wGFuTJg1fik','Botez Vlad - best moments','Videografescu Media'],
+['KtE0wbpI9iM','Filmare Botez Emma Ioana - Best Moments - Filmare FotoTime','FOTOTIME | Fotograf de nuntă'],
+['RNP6uFkBUNw','Clip Botez | Best Moments Vladimir Stefan | Nelstill Video Production','Nelstill']]],
+['Filmate cu telefonul','Shot on a phone','wedding video shot on iphone',[
+['MRXmsRVp8FU','Wedding Video Shot on iPhone 16 Pro Max','videowien'],
+['9XIMwjnjbFc','iPhone 11 Pro Cinematic Wedding','The Run and Gun Shooter']]]];
+const MORE=[['Majorat','18th birthday','majorat best moments'],['Aniversare','Birthday','aniversare best moments'],['Petrecere','Party','aftermovie petrecere club'],['Gală și corporate','Gala and corporate','aftermovie eveniment corporate']];
+const PREP=[
+['Baterie la 100% și o baterie externă în buzunar','Battery at 100% and a power bank in your pocket'],
+['Cel puțin 20 GB liberi. Un minut 4K ocupă cam 200–400 MB','At least 20 GB free. One minute of 4K takes roughly 200–400 MB'],
+['Lentilele șterse cu o cârpă curată','Lenses wiped with a clean cloth'],
+['Modul Nu deranja pornit, ca să nu-ți întrerupă un apel filmarea','Do Not Disturb on, so a call cannot interrupt your recording'],
+['Formatul ales: vertical sau orizontal','Format chosen: vertical or horizontal'],
+['Programul evenimentului: la ce oră e fiecare moment','The event schedule: what time each moment happens'],
+['O vorbă cu fotograful oficial, ca să nu-i intri în cadru','A word with the hired photographer, so you stay out of their frame'],
+['Muzica pentru montaj, aleasă dinainte','Music for the edit, chosen in advance']];
+const ETQ=[
+['Nu sta în fața fotografului și a videografului plătiți. Ei au prioritate.','Do not stand in front of the hired photographer and videographer. They have priority.'],
+['Fără bliț în biserică. Întreabă preotul unde ai voie să stai.','No flash in church. Ask the priest where you may stand.'],
+['Lasă mirii sau gazda să posteze primii.','Let the couple or the host post first.'],
+['Cere acordul oamenilor înainte să postezi clipuri cu ei, mai ales cu copii.','Ask people before posting clips of them, especially children.'],
+['Nu filma oameni care mănâncă.','Do not film people while they eat.']];
+
+const T={ro:{tag:'Momente, cadre, poziții, montaje',mo:'Momente',sh:'Cadre',po:'Poziții',ed:'Montaj',all:'Toate',mustf:'Esențiale',left:'Rămase',must:'★ Esențial',
+next:'Urmează',see:'Vezi cadrele',got:'Am prins',gotm:'Am prins momentul',undo:'Prins. Atinge ca să anulezi',caught:'Prinse',
+alld:'Ai prins tot ce era pe listă',alldp:'Vezi cum arată montajele făcute la același tip de eveniment.',toed:'Vezi montaje reale',
+rec:'Cadre recomandate',rech:'Filmează cel puțin 10 secunde din fiecare.',what:'Ce filmezi',when:'Când îl folosești',how:'Cum îl faci',mist:'Greșeala frecventă',
+pos:'Cum îi așezi',say:'Ce le spui',close:'Închide',back:'‹ Înapoi',reset:'Șterge bifele de la acest eveniment',reset2:'Sigur? Atinge din nou ca să ștergi',resetok:'Bifele au fost șterse',
+none:'Nimic rămas aici.',moh:'Alege evenimentul și bifează momentele pe măsură ce le filmezi.',shh:'Tipurile de cadre care fac diferența între o filmare și un film. Fiecare are exemple reale.',poh:'Cum așezi oamenii și ce le spui ca să arate natural. Fiecare are exemple reale.',
+fr:'Încadrare',an:'Unghi',mv:'Mișcare',lt:'Lumină',cu:'Cuplu',gr:'Grup',pt:'Portret',sp:'Spontan',
+by:'Foto:',sld:'Imaginea',prv:'Imaginea anterioară',nxt:'Imaginea următoare',exr:'Exemple reale',exp:'Poze reale cu exact acest cadru. Se deschid într-o pagină nouă.',exv:'Clipuri reale cu exact această mișcare. Se deschid într-o pagină nouă.',exm:'Poze și clipuri reale cu acest moment. Se deschid într-o pagină nouă.',
+gi:'Google Imagini',pin:'Pinterest',uns:'Unsplash',yt:'YouTube',tt:'TikTok',
+ex:'Exemple',prep:'Pregătire',edh:'Montaje reale de la evenimente, făcute de videografi. Se deschid pe YouTube.',more:'Mai multe:',other:'Alte evenimente',
+etq:'Bune maniere',chk:'Înainte să pleci de acasă',wake:'Ține ecranul aprins',wakeh:'Cât timp aplicația e deschisă',wakeno:'Telefonul nu permite asta aici.',wakeon:'Ecranul rămâne aprins',
+ft:'Realizat de GLC_TV. © 2026 Toate drepturile rezervate.',lgl:'Switch to English'},
+en:{tag:'Moments, shots, poses, edits',mo:'Moments',sh:'Shots',po:'Poses',ed:'Edits',all:'All',mustf:'Must-have',left:'Remaining',must:'★ Must-have',
+next:'Up next',see:'See the shots',got:'Got it',gotm:'I got this moment',undo:'Captured. Tap to undo',caught:'Captured',
+alld:'You captured everything on the list',alldp:'See how edits from the same kind of event look.',toed:'See real edits',
+rec:'Recommended shots',rech:'Record at least 10 seconds of each.',what:'What to film',when:'When to use it',how:'How to do it',mist:'Common mistake',
+pos:'How to place them',say:'What to tell them',close:'Close',back:'‹ Back',reset:'Clear the ticks for this event',reset2:'Sure? Tap again to clear',resetok:'Ticks cleared',
+none:'Nothing left here.',moh:'Pick the event and tick moments as you film them.',shh:'The shot types that turn footage into a film. Each one has real examples.',poh:'How to place people and what to say so they look natural. Each one has real examples.',
+fr:'Framing',an:'Angle',mv:'Movement',lt:'Light',cu:'Couple',gr:'Group',pt:'Portrait',sp:'Candid',
+by:'Photo:',sld:'Image',prv:'Previous image',nxt:'Next image',exr:'Real examples',exp:'Real photos of exactly this shot. They open in a new page.',exv:'Real clips of exactly this move. They open in a new page.',exm:'Real photos and clips of this moment. They open in a new page.',
+gi:'Google Images',pin:'Pinterest',uns:'Unsplash',yt:'YouTube',tt:'TikTok',
+ex:'Examples',prep:'Prep',edh:'Real event edits made by videographers. They open on YouTube.',more:'More:',other:'Other events',
+etq:'Good manners',chk:'Before you leave home',wake:'Keep the screen on',wakeh:'While the app is open',wakeno:'Your phone does not allow this here.',wakeon:'The screen stays on',
+ft:'Made by GLC_TV. © 2026 All rights reserved.',lgl:'Schimbă în română'}};
+
+/* ---------- state ---------- */
+const S={lang:ld('mh_l','ro'),tab:ld('mh_t','mo'),ev:ld('mh_ev','w'),ck:ld('mh_ck',{}),prep:ld('mh_pr',{}),flt:'all',sc:'all',pc:'all',es:'ex',wake:false,rs:false};
+if(S.lang!='en')S.lang='ro';
+if(!['mo','sh','po','ed'].includes(S.tab))S.tab='mo';
+if(!EVI[S.ev])S.ev='w';
+if(typeof S.ck!='object'||!S.ck)S.ck={};
+if(ld('mh_v',1)<2){const b=S.ck.b;if(b&&typeof b=='object'){const n={};for(const k in b)n[+k>=3?+k+1:k]=b[k];S.ck.b=n;sv('mh_ck',S.ck)}sv('mh_v',2)}
+if(typeof S.prep!='object'||!S.prep)S.prep={};
+const L=a=>a[S.lang=='ro'?0:1];
+const t=(k,r={})=>{let s=T[S.lang][k];for(const n in r)s=s.replace('{'+n+'}',r[n]);return s};
+const nShots=n=>S.lang=='ro'?(n==1?'1 cadru':n+' cadre'):(n==1?'1 shot':n+' shots');
+const cks=()=>S.ck[S.ev]||{};
+function tog(i){const c=S.ck[S.ev]||(S.ck[S.ev]={});if(c[i])delete c[i];else c[i]=1;sv('mh_ck',S.ck)}
+let tt;function toast(s){const e=$('#toast');e.textContent=s;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),2200)}
+
+/* ---------- drawings (viewBox 100x80) ---------- */
+const rad=d=>d*Math.PI/180,n1=v=>Math.round(v*10)/10;
+function fig(x,y,o={}){
+  const s=o.s||1,c=o.c||'k',a=o.a||[12,6,12,6],g=o.g||[5,5],w=n1(2.6/s),dw=o.dw||9;
+  const pt=(ox,oy,ang,len,sg)=>[n1(ox+sg*Math.sin(rad(ang))*len),n1(oy+Math.cos(rad(ang))*len)];
+  const arm=(sg,u,f)=>{const sh=[sg*3,-29],e=pt(sh[0],sh[1],u,7,sg),hd=pt(e[0],e[1],f,7,sg);return 'M'+sh+'L'+e+'L'+hd};
+  const leg=(sg,ang)=>'M'+[sg*1.5,-17]+'L'+pt(sg*1.5,-17,ang,17,sg);
+  const low=o.dress?`<path class="fl-${c}" d="M-2.5-23h5L${dw} 0H${-dw}z"/>`:`<path d="${leg(-1,g[0])}${leg(1,g[1])}"/>`;
+  return `<g class="st-${c}" stroke-width="${w}" transform="translate(${x} ${y}) rotate(${o.r||0}) scale(${s})"${o.o?` opacity="${o.o}"`:''}>${low}<path d="M-3-29h6M0-29V-17${arm(-1,a[0],a[1])}${arm(1,a[2],a[3])}"/><circle class="fl-${c}" cx="0" cy="-35.5" r="4"/></g>`;
+}
+function cam(x,y,r=0,o={}){const c=o.c||'a',f=o.fov;return `<g transform="translate(${x} ${y}) rotate(${r})${o.k?` scale(${o.k})`:''}"${o.o?` opacity="${o.o}"`:''}>${f?`<path class="fov" d="M7 0L${f} ${-n1(f*.3)}V${n1(f*.3)}z"/>`:''}<rect class="fl-${c}" x="-7" y="-4.5" width="10" height="9" rx="2"/><path class="fl-${c}" d="M3-2.2l5-2.6v9.6l-5-2.6z"/></g>`}
+const MO='dur="{d}s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1;0;0" keyTimes="0;.42;.5;.92;1"';
+function mcam(p,d,lens,fov,t0=0){const st=p.match(/M\s*(-?[\d.]+)[ ,](-?[\d.]+)/);return RM?cam(+st[1],+st[2],lens+t0,{fov,k:1.35}):`<g>${cam(0,0,lens,{fov,k:1.35})}<animateMotion ${MO.replace('{d}',d)} rotate="auto" path="${p}"/></g>`}
+const tp=(x,y,c)=>`<ellipse class="fl-${c}" cx="${x}" cy="${y}" rx="7" ry="3.8" opacity=".5"/><circle class="fl-${c}" cx="${x}" cy="${y}" r="3.8"/>`;
+const dash=(d,c='m')=>`<path class="st-${c}" stroke-width="1.3" stroke-dasharray="2 3.5" d="${d}"/>`;
+const arr=(x,y,r,c='m')=>`<path class="fl-${c}" transform="translate(${x} ${y}) rotate(${r})" d="M0 0l-6-3v6z"/>`;
+const GR='<path class="st-m" stroke-width="1.3" d="M4 72h92"/>';
+const vf=(inn,over='')=>`<rect class="fl-c" x="6" y="6" width="88" height="68" rx="5"/><svg x="6" y="6" width="88" height="68" viewBox="6 6 88 68">${inn}</svg><path class="st-m" stroke-width=".6" opacity=".35" d="M35.3 6v68M64.7 6v68M6 28.7h88M6 51.3h88"/><rect class="st-m" stroke-width="1.3" opacity=".5" x="6" y="6" width="88" height="68" rx="5"/>${over}`;
+const blink=RM?'':'<animate attributeName="opacity" values="1;.15;1" dur="1.4s" repeatCount="indefinite"/>';
+const RINGS='<circle class="st-a" stroke-width="4" cx="42" cy="46" r="13"/><circle class="st-k" stroke-width="4" cx="60" cy="46" r="13"/><path class="fl-a" d="M42 20l6 6-6 7-6-7z"/>';
+const WIN=`<rect class="st-k" stroke-width="2" x="7" y="12" width="7" height="46" rx="1.5"/><path class="st-a" stroke-width="1.6" stroke-dasharray="1 4" d="M19 20L52 28M19 34L52 36M19 48L52 44"/>${GR}${fig(66,72,{s:1.45})}<path class="st-a" stroke-width="2.4" d="M61 15.5a7 7 0 0 0 0 10"/>`;
+const SUBJ=fig(72,72,{s:1.3});
+const D={
+f1:()=>vf('<path class="st-m" stroke-width="1.3" d="M6 62h88M33 62V36a17 17 0 0 1 34 0V62"/>'+fig(45,62,{s:.5})+fig(55,62,{s:.5,c:'a',dress:1})),
+f2:()=>vf(fig(50,106,{s:2.5,c:'a',dress:1,a:[20,-20,20,-20]})+'<circle class="fl-k" cx="50" cy="66" r="5.5"/>'),
+f3:()=>vf(fig(50,222,{s:5.2,c:'a'})+'<circle class="fl-c" cx="43" cy="35" r="2"/><circle class="fl-c" cx="57" cy="35" r="2"/><path class="st-c" stroke-width="2.2" d="M42 45q8 7 16 0"/>'),
+f4:()=>vf(RINGS),
+f5:()=>vf(fig(66,70,{s:1.45,c:'a',dress:1})+fig(20,198,{s:4.5,c:'m',o:.5})),
+f6:()=>vf('<path class="st-m" stroke-width="1.3" d="M28 66h44"/>'+fig(45,66,{s:.95})+fig(56,66,{s:.95,c:'a',dress:1})+'<path class="fl-m" opacity=".45" d="M6 6h88v68H74V30a24 20 0 0 0-48 0v44H6z"/>'),
+a1:()=>GR+SUBJ+dash('M20 32V72')+cam(20,26,0,{fov:46}),
+a2:()=>GR+SUBJ+cam(22,66,-36,{fov:52}),
+a3:()=>GR+SUBJ+dash('M18 17V72')+cam(18,11,34,{fov:56}),
+a4:()=>'<path class="st-k" d="M22 62h56M30 62v12M70 62v12"/><circle class="fl-a" cx="40" cy="57.5" r="3.5"/><rect class="fl-m" x="50" y="55" width="14" height="5.5" rx="1.5"/>'+cam(50,14,90,{fov:38}),
+a5:()=>GR+'<path class="st-a" d="M70 72V42a10 10 0 0 1 20 0V72"/>'+fig(46,72,{s:1.3})+cam(14,28,0,{fov:28}),
+m1:()=>vf(fig(44,70,{s:1.3})+fig(57,70,{s:1.3,c:'a',dress:1}),`<circle class="fl-r" cx="15" cy="15.5" r="3">${blink}</circle><text class="tx" x="21" y="18">0:10</text>`),
+m2:()=>tp(76,33,'k')+tp(76,47,'a')+dash('M14 40H56')+arr(60,40,0)+mcam('M14 40H46',4.5,0,16),
+m3:()=>tp(44,42,'k')+tp(57,42,'a')+dash('M22 42A28 28 0 0 0 78 42')+mcam('M22 42A28 28 0 0 0 78 42',6.5,-90,14,90),
+m4:()=>dash('M22 26H82')+arr(86,26,0)+(RM?tp(26,26,'k')+tp(39,26,'a'):`<g>${tp(0,0,'k')}${tp(13,0,'a')}<animateMotion ${MO.replace('{d}',5.5)} path="M22 26H62"/></g>`)+mcam('M28 58H68',5.5,-90,22),
+m5:()=>[14,32,50,68,86].map((x,i)=>tp(x,[22,15,12,15,22][i],i%2?'a':'k')).join('')+`<g transform="translate(50 66)"><g transform="rotate(-90)">${RM?'':'<animateTransform attributeName="transform" type="rotate" values="-132;-48;-132" dur="5.5s" repeatCount="indefinite"/>'}${cam(0,0,0,{fov:34,k:1.35})}</g></g>`,
+m6:()=>tp(60,20,'k')+tp(73,20,'a')+'<rect class="fl-m" x="16" y="38" width="28" height="9" rx="4.5" opacity=".7"/>'+dash('M30 64H72')+mcam('M30 64H66',5.5,-90,30),
+m7:()=>vf(fig(50,70,{s:1.45,c:'a',dress:1,dw:12,a:[150,170,150,170]})+[[18,16,'a'],[30,32,'k'],[72,14,'a'],[82,36,'m'],[24,50,'m'],[76,52,'a'],[64,26,'k'],[36,12,'m']].map(([x,y,c],i)=>`<rect class="fl-${c}" x="${x}" y="${y}" width="3" height="3" rx=".8">${RM?'':`<animate attributeName="y" values="${y};${y+9};${y}" dur="${7+i%3}s" repeatCount="indefinite"/>`}</rect>`).join(''),'<text class="tx" x="12" y="18">0.5×</text>'),
+l1:()=>'<circle class="fl-a" cx="50" cy="36" r="17"/><path class="st-a" stroke-width="1.6" d="M50 8v6M24 20l5 4M76 20l-5 4M16 40h7M84 40h-7"/>'+GR+fig(44,72,{s:1.4})+fig(57,72,{s:1.4,dress:1}),
+l2:()=>WIN,
+l3:()=>'<path class="fl-a" d="M16 56a15 15 0 0 1 30 0z"/><path class="st-m" stroke-width="1.3" d="M4 56h92"/><path class="fl-m" opacity=".35" d="M57 66l33 10H76L55 68zM68 66l26 6v4L64 68z"/>'+fig(58,66,{s:1.15})+fig(68,66,{s:1.15,c:'a',dress:1}),
+l4:()=>[[16,18,7,.25],[34,12,5,.4],[52,20,8,.2],[72,12,6,.4],[88,26,7,.25],[22,40,4,.3],[82,44,5,.3]].map(([x,y,r,o])=>`<circle class="fl-a" cx="${x}" cy="${y}" r="${r}" opacity="${o}"/>`).join('')+GR+fig(44,72,{s:1.35})+fig(57,72,{s:1.35,c:'a',dress:1}),
+c1:()=>GR+fig(39,72,{s:1.5,a:[14,8,21,21],g:[12,0]})+fig(61,72,{s:1.5,c:'a',dress:1,a:[21,21,14,8]}),
+c2:()=>GR+fig(41,72,{s:1.5,r:5,a:[10,6,35,60]})+fig(59,72,{s:1.5,c:'a',dress:1,r:-5,a:[35,60,10,6]}),
+c3:()=>GR+fig(54,72,{s:1.6,a:[30,30,30,30]})+fig(46,72,{s:1.45,c:'a',dress:1})+'<path class="st-k" d="M37 45L52 50M62 46L45 53"/>',
+c4:()=>GR+fig(38,72,{s:1.5,a:[12,6,150,165]})+fig(62,72,{s:1.5,c:'a',dress:1,dw:12,a:[150,165,40,70]})+'<path class="st-m" stroke-width="1.3" d="M48 76q14 4 28-1"/>'+arr(78,74.5,-20),
+c5:()=>vf(RINGS),
+c6:()=>GR+fig(42,72,{s:1.5,r:9,a:[10,6,30,50]})+fig(60,72,{s:1.5,c:'a',dress:1,r:5})+'<path class="st-a" stroke-width="1.6" d="M76 14l4-3M78 21h5M76 28l4 3"/>',
+g1:()=>GR+fig(30,62,{s:1.1})+fig(50,62,{s:1.1,c:'a',dress:1})+fig(70,62,{s:1.1})+fig(40,86,{s:1.1,c:'m',g:[70,70]})+fig(60,86,{s:1.1,c:'m',g:[70,70]}),
+g2:()=>GR+fig(17,60,{s:.95,c:'m'})+fig(83,60,{s:.95,c:'m'})+fig(31,65,{s:1.15})+fig(69,65,{s:1.15})+fig(44,72,{s:1.4})+fig(57,72,{s:1.4,c:'a',dress:1}),
+g3:()=>GR+fig(21,72,{s:1.35,a:[22,8,6,18],g:[14,-2]})+fig(40,72,{s:1.35,c:'a',dress:1,a:[6,18,22,8]})+fig(60,72,{s:1.35,a:[22,8,6,18],g:[-2,14]})+fig(79,72,{s:1.35,c:'m',a:[6,18,22,8],g:[14,-2]}),
+g4:()=>GR+fig(20,72,{s:1.3,a:[12,6,125,140]})+fig(39,72,{s:1.3,c:'a',dress:1,a:[12,6,150,165]})+fig(61,72,{s:1.3,a:[150,165,12,6]})+fig(80,72,{s:1.3,c:'m',a:[125,140,12,6]})+'<path class="st-a" stroke-width="1.6" d="M50 6v6M47 9h6"/>',
+g5:()=>GR+fig(26,72,{s:1.3,a:[20,8,82,96]})+fig(42,72,{s:1.3,c:'a',dress:1,a:[82,96,82,96]})+fig(58,72,{s:1.3,a:[82,96,82,96]})+fig(74,72,{s:1.3,c:'m',a:[82,96,20,8]}),
+p1:()=>GR+fig(50,72,{s:1.55,a:[48,-48,12,6]})+'<path class="st-m" stroke-width="1.3" d="M32 77q18 4 36-2"/>'+arr(70,74.5,-22),
+p2:()=>GR+fig(50,72,{s:1.55,c:'a',dress:1,a:[20,-25,20,-25]})+'<circle class="fl-k" cx="50" cy="46" r="5.5"/>',
+p3:()=>WIN,
+p4:()=>GR+'<path class="st-m" stroke-width="3" d="M71 8V72"/>'+fig(56,72,{s:1.55,r:8,g:[3,-12]}),
+p5:()=>vf(fig(34,178,{s:4,c:'a'})+'<circle class="fl-c" cx="40" cy="33" r="2"/>'+dash('M56 36H82','k')+arr(86,36,0,'k')),
+s1:()=>GR+'<path class="st-m" stroke-width="1.6" d="M8 72V63h14v9M11 63v-6h8v6M15 57v-4"/><circle class="fl-a" cx="15" cy="51" r="1.6"/><rect class="st-a" stroke-width="1.4" stroke-dasharray="3 3" x="38" y="12" width="57" height="64" rx="5"/>'+fig(51,72,{s:1.2,a:[150,165,150,165]})+fig(67,72,{s:1.2,c:'a',dress:1,a:[40,-60,40,-60]})+fig(83,72,{s:1.2,a:[150,165,150,165]}),
+s2:()=>GR+cam(30,13,38,{c:'m',o:.4})+dash('M30 20V72')+fig(72,72,{s:.8,c:'a',a:[150,165,150,165]})+cam(30,46,0,{fov:36}),
+s3:()=>GR+fig(42,72,{s:1.5,r:5,a:[10,6,65,-20]})+fig(58,72,{s:1.5,c:'a',r:-5,a:[65,-20,10,6]})
+};
+const svg=(id,label)=>`<svg class="dg" viewBox="0 0 100 80" ${label?`role="img" aria-label="${label}"`:'aria-hidden="true"'}>${D[id]()}</svg>`;
+const PHOTOS={"f1":{"src":"shots/f1.jpg","by":"Kari Bjorn Photography","id":"O9b1R1oZJNY"},"f2":{"src":"shots/f2.jpg","by":"Naeem Ad","id":"rUVJTR4XGAk"},"f3":{"src":"shots/f3.jpg","by":"550Park Luxury Wedding Films","id":"4gLJcTN4O2Y"},"f4":{"src":"shots/f4.jpg","by":"Mariano Rivas","id":"ZYet8yoepik"},"f5":{"src":"shots/f5.jpg","by":"Priscilla Du Preez 🇨🇦","id":"03BO2O-Licc"},"f6":{"src":"shots/f6.jpg","by":"Kelly Sikkema","id":"sBWK8e_t05w"},"a1":{"src":"shots/a1.jpg","by":"Jake Forsher","id":"oFrx41lb2PU"},"a2":{"src":"shots/a2.jpg","by":"Pars Sahin","id":"GOCOhaYRjf0"},"a3":{"src":"shots/a3.jpg","by":"Ryleigh Henschen","id":"GhAEqS0bM9M"},"a4":{"src":"shots/a4.jpg","by":"Tetiana Thiel","id":"UEobRrnokRc"},"a5":{"src":"shots/a5.jpg","by":"Eric Alves","id":"divFrH3p6nc"},"m1":{"src":"shots/m1.jpg","by":"Alfonso Scarpa","id":"cZBuMNrLMgI"},"m2":{"src":"shots/m2.jpg","by":"Filipp Romanovski","id":"uICRbCjNheY"},"m3":{"src":"shots/m3.jpg","by":"Bernie Almanzar","id":"cZZ8D_wGI5Y"},"m4":{"src":"shots/m4.jpg","by":"Fotógrafo Samuel Cruz","id":"c3wd-WoNRmE"},"m5":{"src":"shots/m5.jpg","by":"Lucas T Photography","id":"pyd736FSNvk"},"m6":{"src":"shots/m6.jpg","by":"Gabriel Tovar","id":"3bxl3XAgzyw"},"m7":{"src":"shots/m7.jpg","by":"JAN Pictures","id":"Knt1jl1r8Kk"},"l1":{"src":"shots/l1.jpg","by":"Vows on the Move","id":"p0vZplFhKYI"},"l2":{"src":"shots/l2.jpg","by":"Marius Muresan","id":"yXXoU73PLIY"},"l3":{"src":"shots/l3.jpg","by":"Anna Vi","id":"rQSauuUzx0w"},"l4":{"src":"shots/l4.jpg","by":"Omar Lopez","id":"1HiSyieWYS8"},"c1":{"src":"shots/c1.jpg","by":"Tim Stagge","id":"yEcKzQtGUgw"},"c2":{"src":"shots/c2.jpg","by":"Мзеона Твилдиани","id":"aR_sjKKecp4"},"c3":{"src":"shots/c3.jpg","by":"Jonathan Borba","id":"_1yicIIMHf8"},"c4":{"src":"shots/c4.jpg","by":"Jacob Diehl","id":"QdpYkcQ72ms"},"c5":{"src":"shots/c5.jpg","by":"Samantha Gades","id":"N1CZNuM_Fd8"},"c6":{"src":"shots/c6.jpg","by":"Tim Bish","id":"YR03LQ4csBM"},"g1":{"src":"shots/g1.jpg","by":"Sam Barber","id":"Ek5gbDUPmaA"},"g2":{"src":"shots/g2.jpg","by":"UP ABOVE PICTURES","id":"e9Ct7s6409o"},"g3":{"src":"shots/g3.jpg","by":"Joeyy Lee","id":"L1zX1ba14e4"},"g4":{"src":"shots/g4.jpg","by":"engin akyurt","id":"3IN8pjVpDw0"},"g5":{"src":"shots/g5.jpg","by":"550Park Luxury Wedding Films","id":"ZNt2IJRY1no"},"p1":{"src":"shots/p1.jpg","by":"Micah & Sammie Chaffin","id":"OwyJw9w92xw"},"p2":{"src":"shots/p2.jpg","by":"Jen Theodore","id":"gVi7zSkmXSU"},"p3":{"src":"shots/p3.jpg","by":"Cássio Jardim","id":"Efd5oh-nQWI"},"p4":{"src":"shots/p4.jpg","by":"Dmitry Rodionov","id":"ljXJQ1I-7vg"},"p5":{"src":"shots/p5.jpg","by":"Marius Muresan","id":"x1mUAshxzpM"},"s1":{"src":"shots/s1.jpg","by":"Ben Atkins","id":"PNXx2A5s5Zk"},"s2":{"src":"shots/s2.jpg","by":"Fotógrafo Samuel Cruz","id":"gdQIqYiABL8"},"s3":{"src":"shots/s3.jpg","by":"Filip Rankovic Grobgaard","id":"tkI306JXz7o"},"m_w0":{"src":"moments/mw0.jpg","by":"Emily Finch","id":"Un4EyaC9CYs"},"m_w1":{"src":"moments/mw1.jpg","by":"Ashley Connelly","id":"-ggvztah8wY"},"m_w2":{"src":"moments/mw2.jpg","by":"Jonathan Borba","id":"JgbaiatLhKA"},"m_w3":{"src":"moments/mw3.jpg","by":"Victoria Priessnitz","id":"-jx4xX-ZJlc"},"m_w4":{"src":"moments/mw4.jpg","by":"Ben Atkins","id":"wPUGn4dElWI"},"m_w5":{"src":"moments/mw5.jpg","by":"Marius Muresan","id":"DOyBAKWmOa0"},"m_w6":{"src":"moments/mw6.jpg","by":"Tom The Photographer","id":"SljsxQcjZl0"},"m_w7":{"src":"moments/mw7.jpg","by":"James Bold","id":"Qdr4mpifNQQ"},"m_w8":{"src":"moments/mw8.jpg","by":"Ana Curcan","id":"xc-SlgHJKrM"},"m_w9":{"src":"moments/mw9.jpg","by":"Pedro Pulido","id":"6bFp65WVrL8"},"m_w10":{"src":"moments/mw10.jpg","by":"550Park Luxury Wedding Films","id":"pJisOQ0iJOU"},"m_w11":{"src":"moments/mw11.jpg","by":"c k","id":"o6u_mqxYGDg"},"m_w12":{"src":"moments/mw12.jpg","by":"Asdrubal luna","id":"aIAHWmRe8Bg"},"m_w13":{"src":"moments/mw13.jpg","by":"Genessa Panainte","id":"JGNN__4R-iA"},"m_w14":{"src":"moments/mw14.jpg","by":"Wedding Dreamz","id":"iZit-SCQAdA"},"m_w15":{"src":"moments/mw15.jpg","by":"Rodrigo Rodrigues | WOLF Λ R T","id":"9xcKHqQNoco"},"m_w16":{"src":"moments/mw16.jpg","by":"Luwadlin Bosman","id":"P_HRPYpFTNA"},"m_w17":{"src":"moments/mw17.jpg","by":"Wesley Tingey","id":"0CklaCuehpc"},"m_w18":{"src":"moments/mw18.jpg","by":"Kari Bjorn Photography","id":"8-t8kTo8CGI"},"m_w20":{"src":"moments/mw20.jpg","by":"Wedding Dreamz","id":"YAZvMNdxFSY"},"m_w21":{"src":"moments/mw21.jpg","by":"Pedro Pulido","id":"G6Yu0BWnggE"},"m_w23":{"src":"moments/mw23.jpg","by":"Imani Manyara","id":"BQ2AMo8l5mk"},"m_b0":{"src":"moments/mb0.jpg","by":"Ricky Robertson","id":"UKRhf3h9XHs"},"m_b1":{"src":"moments/mb1.jpg","by":"Aditya Romansa","id":"5zp0jym2w9M"},"m_a0":{"src":"moments/ma0.jpg","by":"Gabriel Tudor","id":"V-yhwaT6JrY"},"m_a1":{"src":"moments/ma1.jpg","by":"Kamyar Ghalamchi","id":"cNO0bohAgEQ"},"m_a2":{"src":"moments/ma2.jpg","by":"Vitaly Gariev","id":"E1qHLWspl-k"},"m_a3":{"src":"moments/ma3.jpg","by":"Vitaly Gariev","id":"VtRXNeBpknA"},"m_a4":{"src":"moments/ma4.jpg","by":"Jorge Ibanez","id":"cK6ixOQx1fI"},"m_a5":{"src":"moments/ma5.jpg","by":"Brett Wharton","id":"aQYYu7892so"},"m_a6":{"src":"moments/ma6.jpg","by":"Enis Yavuz","id":"J5i9E-oAGgM"},"m_a7":{"src":"moments/ma7.jpg","by":"Jack","id":"-eqm30LNAlE"},"m_a8":{"src":"moments/ma8.jpg","by":"Captian Jayu","id":"fReOa8L2Ijc"},"m_a9":{"src":"moments/ma9.jpg","by":"Victoria Rodriguez","id":"YYXqBwvdoeI"},"m_a10":{"src":"moments/ma10.jpg","by":"Seyedeh Hamideh Kazemi","id":"H67AHfpKhZk"},"m_p0":{"src":"moments/mp0.jpg","by":"Ann Danilina","id":"BywBQ-TxS_w"},"m_p1":{"src":"moments/mp1.jpg","by":"stefzn","id":"XKLHbl-g6vo"},"m_p2":{"src":"moments/mp2.jpg","by":"Aleksandr Popov","id":"9vDdkxSCAD4"},"m_p3":{"src":"moments/mp3.jpg","by":"Adam Jaime","id":"dmkmrNptMpw"},"m_p4":{"src":"moments/mp4.jpg","by":"DJ Timebeatz","id":"oW1eKBH0FdU"},"m_p5":{"src":"moments/mp5.jpg","by":"Laszlo Barta","id":"ggtazGNV9iw"},"m_p6":{"src":"moments/mp6.jpg","by":"OurWhisky Foundation","id":"7Jyyf4haqww"},"m_p7":{"src":"moments/mp7.jpg","by":"Pablo Heimplatz","id":"ZODcBkEohk8"},"m_p8":{"src":"moments/mp8.jpg","by":"Othniel Dickson","id":"h3YumdOWzgQ"},"m_p9":{"src":"moments/mp9.jpg","by":"Jonathan Borba","id":"8l8Yl2ruUsg"},"m_p10":{"src":"moments/mp10.jpg","by":"Kimson Doan","id":"AZMmUy2qL6A"},"m_g0":{"src":"moments/mg0.jpg","by":"HamZa NOUASRIA","id":"-3pvRUfQc-c"},"m_g1":{"src":"moments/mg1.jpg","by":"blue sky","id":"eLnrrITCy6Q"},"m_g2":{"src":"moments/mg2.jpg","by":"Ambre Estève","id":"gdCwuKCuJWY"},"m_g3":{"src":"moments/mg3.jpg","by":"Product School","id":"S3hhrqLrgYM"},"m_g4":{"src":"moments/mg4.jpg","by":"Elissa Garcia","id":"ckVjMurwKIs"},"m_g5":{"src":"moments/mg5.jpg","by":"alexsandra frizzera","id":"m_wiSoDX2KI"},"m_g6":{"src":"moments/mg6.jpg","by":"Jez Timms","id":"fo_RRTVz6IE"},"m_g7":{"src":"moments/mg7.jpg","by":"EmbedSocial","id":"1ed0Wco257o"},"m_g8":{"src":"moments/mg8.jpg","by":"Gordon Cowie","id":"JbcOtH0W6UQ"},"m_g9":{"src":"moments/mg9.jpg","by":"Hayk Badalyan","id":"5nGCyV51P60"},"m_x0":{"src":"moments/mx0.jpg","by":"Steve DiMatteo","id":"tQO-9Xa2Bhk"},"m_x1":{"src":"moments/mx1.jpg","by":"Photos by Lanty","id":"O38Id_cyV4M"},"m_x2":{"src":"moments/mx2.jpg","by":"Filip Rankovic Grobgaard","id":"NDgMt4Ma2pY"},"m_x3":{"src":"moments/mx3.jpg","by":"Abram Katz","id":"zcMQQrji6vo"},"m_x4":{"src":"moments/mx4.jpg","by":"emanuel flores","id":"GnrjOwte6nQ"},"m_x5":{"src":"moments/mx5.jpg","by":"Joel Muniz","id":"wuiZV3OJcPE"},"m_x6":{"src":"moments/mx6.jpg","by":"Jessie Maxwell","id":"CqPBlW-heVY"},"m_x7":{"src":"moments/mx7.jpg","by":"Jack","id":"-eqm30LNAlE"},"m_x8":{"src":"moments/mx8.jpg","by":"Vitaly Gariev","id":"q3335Xue5RM"},"m_x9":{"src":"moments/mx9.jpg","by":"yanzheng xia","id":"3S1AgG4Mq-g"},"m_b13":{"src":"moments/mb12.jpg","by":"Tara Raye","id":"fiWshslUTFw"},"m_b12":{"src":"moments/mb11.jpg","by":"Malin Björk","id":"UMelIsibSjw"},"m_b11":{"src":"moments/mb10.jpg","by":"patrick zutterman","id":"wgvtxbH_sHk"},"m_b10":{"src":"moments/mb9.jpg","by":"Sirio","id":"hm3efUMoReg"},"m_b9":{"src":"moments/mb8.jpg","by":"Fld Andrei","id":"E7s9w_NWjO4"},"m_b8":{"src":"moments/mb7.jpg","by":"Julia Michelle","id":"FCr7829S7tE"},"m_b7":{"src":"moments/mb6.jpg","by":"Gabriel Dizzi","id":"wmxVond9Mv4"},"m_b6":{"src":"moments/mb5.jpg","by":"Julia Michelle","id":"LQEk8okbEOw"},"m_b5":{"src":"moments/mb4.jpg","by":"Ayodele Adeniyi","id":"7nKiwPK6iUM"},"m_b4":{"src":"moments/mb3.jpg","by":"Marius Muresan","id":"yYT7MkLSPIo"}};
+const GAL={"m_w11":[{"src":"poses/gw01.jpg","by":"Jarad Lee","id":"qD9m3Q3p9E0","n":["De mână, la un pas distanță","Hand in hand, one step apart"],"d":["Stau față în față, la un pas unul de altul, și se țin de o singură mână. Spune-le să se uite unul la altul, nu la cameră.","They face each other a step apart, holding just one hand. Tell them to look at each other, not at the camera."]},{"src":"poses/gw02.jpg","by":"Audrey Hoover","id":"PpuQX3drBe4","n":["Mâinile, de aproape","The hands, up close"],"d":["El îi cuprinde mâna cu a lui, la nivelul taliei. Încadrează doar mâinile, verigheta și puțin din rochie.","He wraps her hand in his at waist height. Frame only the hands, the ring and a bit of the dress."]},{"src":"poses/gw03.jpg","by":"Ben Atkins","id":"JYR7DNdUqo4","n":["Mers la braț","Walking arm in arm"],"d":["Merg încet spre tine, lipiți umăr la umăr. Ea ține buchetul în față, el are o mână în buzunar și se uită la ea.","They walk slowly toward you, shoulder to shoulder. She holds the bouquet in front, he keeps a hand in his pocket and looks at her."]},{"src":"poses/gw04.jpg","by":"Fotógrafo Samuel Cruz","id":"-f_V-YwyrYI","n":["Mers de mână, pe mal","Hand in hand by the water"],"d":["Merg de mână, cu brațele întinse, și întorc capul unul spre altul. Lasă mult cer în cadru.","They walk hand in hand with arms extended and turn their heads toward each other. Leave plenty of sky in the frame."]},{"src":"poses/gw05.jpg","by":"Jonathan Borba","id":"_1yicIIMHf8","n":["Îmbrățișare din spate","The hug from behind"],"d":["El stă în spatele ei și o cuprinde cu brațele. Ea își pune mâinile peste ale lui, pe talie, și întoarce capul spre el.","He stands behind her and wraps his arms around her. She rests her hands over his at her waist and turns her head toward him."]},{"src":"poses/gw06.jpg","by":"Fotógrafo Samuel Cruz","id":"J8JkRWruCEw","n":["Mâna pe obrazul lui","Her hand on his cheek"],"d":["El o ține de talie, ea îi pune palma pe obraz. Așază-i cu soarele în spate, ca lumina să le contureze părul.","He holds her waist, she lays her palm on his cheek. Place them with the sun behind, so the light outlines their hair."]},{"src":"poses/gw07.jpg","by":"Marius Muresan","id":"dhW0gTVexdw","n":["Aproape de sărut","Almost a kiss"],"d":["Nas lângă nas, cu o clipă înainte de sărut. Mâna ei stă pe pieptul lui. Fotografiază din profil.","Nose to nose, a moment before the kiss. Her hand rests on his chest. Shoot them in profile."]},{"src":"poses/gw08.jpg","by":"mari lezhava","id":"egz7W1zHYbU","n":["Sărut pe frunte","The forehead kiss"],"d":["El o sărută pe frunte, ea închide ochii. O mână a ei stă pe pieptul lui, cealaltă pe ceafa lui.","He kisses her forehead, she closes her eyes. One of her hands rests on his chest, the other on the back of his neck."]},{"src":"poses/gw09.jpg","by":"Gemali Martinez","id":"Q4__uC0B3-E","n":["Sub voal, în vânt","Under the flying veil"],"d":["Cineva ridică voalul și îi dă drumul deasupra lor. El o sărută pe frunte, ea ține buchetul jos, în față.","Someone lifts the veil and lets it drop over them. He kisses her forehead, she holds the bouquet low in front."]},{"src":"poses/gw10.jpg","by":"Soulseeker - Creative Photography","id":"MhNvUsW0plE","n":["Sub voal, de aproape","Under the veil, up close"],"d":["Trag voalul peste amândoi și se apropie zâmbind. Fotografiază de foarte aproape, prin voal.","They pull the veil over both of them and lean in, smiling. Shoot from very close, through the veil."]},{"src":"poses/gw11.jpg","by":"Gemali Martinez","id":"-AntkUZ3_xk","n":["Voalul în vânt","The veil in the wind"],"d":["Așază-i cu vântul din lateral și lasă voalul să zboare. El o ține de talie și o sărută, ea lasă buchetul în jos.","Place them side-on to the wind and let the veil fly. He holds her waist and kisses her, she lets the bouquet hang down."]},{"src":"poses/gw12.jpg","by":"Antonella Quispe Tumay","id":"aL9OWhvBQ94","n":["Pirueta","The twirl"],"d":["El îi ridică mâna deasupra capului și o învârte încet. Rochia se rotește, așa că fă mai multe cadre la rând.","He lifts her hand above her head and turns her slowly. The dress spins, so take several frames in a row."]},{"src":"poses/gw13.jpg","by":"Jose Nicdao","id":"2eZ0Ztl7Xd0","n":["Lăsată pe spate","The dip"],"d":["El o sprijină cu o mână la spate și cu cealaltă de talie, apoi o apleacă ușor. Ea își ține brațul pe după gâtul lui.","He supports her with one hand on her back and one at her waist, then leans her back gently. She keeps an arm around his neck."]},{"src":"poses/gw14.jpg","by":"Brooke Balentine","id":"0oAcNVd0MXw","n":["Luată în brațe","Carried in his arms"],"d":["El o ridică, cu un braț sub genunchi și unul la spate. Ea își pune brațele pe după gâtul lui.","He lifts her with one arm under her knees and one behind her back. She puts her arms around his neck."]},{"src":"poses/gw15.jpg","by":"Jens Lindner","id":"_a6FrbUXFfc","n":["Așezați, relaxați","Sitting down, relaxed"],"d":["Stau pe o bancă sau pe trepte, aproape unul de altul. Ea ține buchetul în poală, se uită unul la altul și râd.","They sit on a bench or on steps, close together. She holds the bouquet in her lap, they look at each other and laugh."]},{"src":"poses/gw16.jpg","by":"Omar Tursić","id":"HnxfKgfM5ww","n":["Siluetă la apus","Silhouette at sunset"],"d":["Stau în fața cerului de apus, cu brațele ei pe după gâtul lui. Atinge cerul pe ecran, ca ei să rămână siluete.","They stand against the sunset sky, her arms around his neck. Tap the sky on your screen so they stay silhouettes."]}],"m_b3":[{"src":"poses/gb01.jpg","by":"Marius Muresan","id":"xEQxdbeCaUI","n":["Pe spate, de sus","On the back, from above"],"d":["Așază copilul pe o pătură albă, lângă fereastră, și fotografiază drept de deasupra. Hăinuțele de botez se văd întregi.","Lay the baby on a white blanket by a window and shoot from straight above. The whole christening outfit shows."]},{"src":"poses/gb02.jpg","by":"Marius Muresan","id":"UIe3RUvxytU","n":["Prim-plan, de aproape","Close-up"],"d":["Apropie-te până când fața și mânuțele umplu cadrul. Așteaptă să se uite spre tine sau spre lumină.","Move in until the face and little hands fill the frame. Wait for the baby to look at you or toward the light."]},{"src":"poses/gb03.jpg","by":"Melisa Figueroa","id":"0Rh9bKqRDA0","n":["Pe burtică, cu obrazul pe mânuțe","On the tummy, cheek on hands"],"d":["Pune-l pe burtică și coboară telefonul la nivelul ochilor lui. Doar câteva secunde, cât se simte bine.","Put the baby on the tummy and lower your phone to eye level. Just a few seconds, while the baby is comfortable."]},{"src":"poses/gb04.jpg","by":"Henley Design Studio","id":"Hy9IXna5x_o","n":["Șezând pe pat","Sitting on the bed"],"d":["Dacă stă singur în șezut, așază-l pe pat, cu perne în spate și cu fereastra în spate sau în lateral. Un părinte stă chiar lângă cadru.","If the baby can sit unaided, place them on the bed with pillows behind and the window behind or to the side. A parent stays just out of frame."]},{"src":"poses/gb05.jpg","by":"Christian Bowen","id":"Qtbh5QM3m1I","n":["În coșuleț","In a basket"],"d":["Un coșuleț cu o păturică moale îl ține pe loc. Fotografiază de sus și nu-l lăsa singur nicio clipă.","A basket with a soft blanket keeps the baby in place. Shoot from above and never leave the baby alone in it."]},{"src":"poses/gb06.jpg","by":"Jonathan Borba","id":"Kj8s2GQn0OA","n":["Adormit, înfășat","Asleep, wrapped up"],"d":["Somnul e cel mai ușor moment. Înfășat într-o păturică albă, cu fața spre fereastră, fotografiat de aproape.","Sleep is the easiest moment. Wrapped in a white blanket, face toward the window, shot from close."]},{"src":"poses/gb07.jpg","by":"Manuel Schinner","id":"ZwjFuJ7ebpk","n":["Tălpile în palmele părinților","Feet in the parents' hands"],"d":["Părintele ține tălpile în căușul palmelor. Focalizează pe degețele și lasă copilul neclar, în fundal.","A parent cups the feet in both hands. Focus on the toes and leave the baby soft in the background."]},{"src":"poses/gb08.jpg","by":"Hu Chen","id":"tCbTGNwrFNM","n":["Mânuța în mâna părintelui","The little hand in a parent's hand"],"d":["Pumnul copilului stă în palma părintelui sau îi strânge un deget. Cadru strâns, doar mâinile.","The baby's fist rests in the parent's palm or grips a finger. A tight frame, hands only."]},{"src":"poses/gb09.jpg","by":"Marius Muresan","id":"h7ZAzCapduk","n":["Nas în nas cu mama","Nose to nose with mom"],"d":["Mama îl ridică la nivelul feței, cu o mână sub cap, și își atinge nasul de al lui. Fotografiază din profil, lângă fereastră.","Mom lifts the baby to face level, one hand under the head, and touches noses. Shoot in profile, by a window."]},{"src":"poses/gb10.jpg","by":"Jonathan Borba","id":"RWgE9_lKj_Y","n":["Ridicat în brațe, frunte în frunte","Lifted up, forehead to forehead"],"d":["Mama îl ține de sub brațe, puțin mai sus decât fața ei, și își lipește fruntea de a lui. Perdeaua albă din spate face lumina moale.","Mom holds the baby under the arms, slightly above her face, forehead to forehead. A white curtain behind makes the light soft."]},{"src":"poses/gb11.jpg","by":"Marius Muresan","id":"i6u5k_v1L8Q","n":["În brațele tatălui","In dad's arms"],"d":["Tatăl îl ține la piept, cu o mână sub cap, și se uită la el. Lumina vine dintr-o parte, de la fereastră.","Dad holds the baby to his chest, one hand under the head, and looks down. The light comes from one side, from a window."]},{"src":"poses/gb12.jpg","by":"Olivia Anne Snyder","id":"Bmb4OVNozOs","n":["Culcat pe antebraț","Lying on the forearm"],"d":["Copilul stă culcat pe antebraț, cu capul sprijinit în palmă. Fotografiază din lateral, cu fereastra în spate.","The baby lies along the forearm, head supported in the palm. Shoot from the side with the window behind."]},{"src":"poses/gb13.jpg","by":"Kateryna Hliznitsova","id":"W6_XEj2idZc","n":["Peste umărul tatălui","Over dad's shoulder"],"d":["Tatăl stă cu spatele la tine, copilul se uită peste umărul lui. Strigă-l pe nume ca să privească spre cameră.","Dad stands with his back to you, the baby looks over his shoulder. Call the baby's name to get a look at the camera."]},{"src":"poses/gb14.jpg","by":"Marius Muresan","id":"0oscP1B8Na4","n":["În brațe, zâmbind","Held and smiling"],"d":["Ținut în brațe, cu fața spre lumină, între două persoane dragi. Fotografiază peste umărul uneia dintre ele.","Held in someone's arms, face toward the light, between two loved ones. Shoot over the shoulder of one of them."]},{"src":"poses/gb15.jpg","by":"Nataliia Hordiiuk","id":"8A6chnMB6Eo","n":["Cu amândoi părinții","With both parents"],"d":["Mama îl sărută pe obraz, tatăl se apleacă spre ei. Afară, cu soarele în spatele lor.","Mom kisses the baby's cheek, dad leans in toward them. Outdoors, with the sun behind them."]}]};
+function slides(id,label){
+  const ph=PHOTOS[id],gal=GAL[id]||[],items=[];
+  let fix=()=>{};
+  const fig=(p,alt,cap,lazy)=>{const at={src:p.src,alt,width:'797',height:'637',decoding:'async',onerror:e=>{e.target.closest('.sl').remove();fix()}};if(lazy)at.loading='lazy';return h('figure',{class:'sl'},h('div',{class:'ph'},h('img',at),p.by&&h('figcaption',{},h('a',{href:'https://unsplash.com/photos/'+p.id,target:'_blank',rel:'noopener noreferrer'},t('by')+' '+p.by+' · Unsplash'))),cap)};
+  if(ph)items.push(fig(ph,label));
+  gal.forEach(g=>items.push(fig(g,L(g.n),h('div',{class:'cap'},h('b',{},L(g.n)),h('p',{},L(g.d))),items.length>1)));
+  if(D[id])items.push(h('div',{class:'sl'},thumb(id,1,label)));
+  if(items.length<2)return items[0]||null;
+  let cur=0;
+  const many=items.length>8;
+  const tr=h('div',{class:'slides',tabindex:'0'},items);
+  const live=()=>items.filter(x=>x.parentNode===tr);
+  const to=i=>{const a=live();i=Math.max(0,Math.min(a.length-1,i));tr.scrollTo({left:a[i].offsetLeft-a[0].offsetLeft,behavior:RM?'auto':'smooth'})};
+  const dots=many?h('div',{class:'cnt','aria-live':'polite'}):h('div',{class:'cdots'},items.map((_,i)=>h('button',{class:i?'':'on','aria-label':t('sld')+' '+(i+1),onclick:()=>to(i)})));
+  const pv=h('button',{class:'cnav pv','aria-label':t('prv'),onclick:()=>to(cur-1)},'‹'),nx=h('button',{class:'cnav nx','aria-label':t('nxt'),onclick:()=>to(cur+1)},'›');
+  const upd=()=>{const n=live().length;cur=Math.max(0,Math.min(n-1,Math.round(tr.scrollLeft/((tr.clientWidth||1)+10))));if(many)dots.textContent=(cur+1)+' / '+n;else[...dots.children].forEach((d,j)=>{d.classList.toggle('on',j==cur);d.hidden=j>=n});pv.hidden=cur<=0;nx.hidden=cur>=n-1};
+  fix=()=>{if(live().length<2){dots.remove();pv.remove();nx.remove()}else upd()};
+  tr.onscroll=upd;upd();
+  return h('div',{class:'car'+(gal.length?' g':'')},tr,pv,nx,dots);
+}
+const thumb=(id,big,label)=>h('span',{class:'th'+(big?' big':''),html:svg(id,label)});
+
+/* ---------- sheet ---------- */
+let lastF=null,closing=0;
+const play=el=>{if(!el)return;el.classList.remove('go');void el.offsetWidth;el.classList.add('go')};
+function openSheet(build){const sh=$('#sheet'),fresh=sh.hidden;if(fresh)lastF=document.activeElement;clearTimeout(closing);sh.classList.remove('fo');const p=h('div',{class:'panel '+(fresh?'in':'go'),role:'dialog','aria-modal':'true'});sh.replaceChildren(p);sh.hidden=false;sh._b=build;build(p);p.scrollTop=0;const x=p.querySelector('.x');x&&x.focus({preventScroll:true})}
+function hideSheet(){const sh=$('#sheet');clearTimeout(closing);sh.hidden=true;sh.classList.remove('fo');sh.style.background='';if(lastF&&lastF.isConnected)lastF.focus({preventScroll:true})}
+function redraw(){const sh=$('#sheet');if(sh.hidden)return;const p=sh.firstChild,st=p.scrollTop;p.replaceChildren();sh._b(p);p.scrollTop=st}
+function closeSheet(){const sh=$('#sheet'),p=sh.firstChild;if(sh.hidden)return;if(!p||RM){hideSheet();return}p.classList.remove('in','go');p.classList.add('out');sh.classList.add('fo');clearTimeout(closing);closing=setTimeout(hideSheet,240)}
+function dragSheet(ov,close){let x0=0,y0=0,dy=0,p=null,on=false,lockd=false;
+ ov.addEventListener('touchstart',e=>{p=e.target.closest('.panel');if(!p||p.scrollTop>0||p.classList.contains('out')){p=null;return}x0=e.touches[0].clientX;y0=e.touches[0].clientY;dy=0;on=true;lockd=false},{passive:true});
+ ov.addEventListener('touchmove',e=>{if(!on||!p)return;const mx=e.touches[0].clientX-x0,my=e.touches[0].clientY-y0;if(!lockd){if(Math.abs(mx)<6&&Math.abs(my)<6)return;if(Math.abs(mx)>Math.abs(my)){on=false;return}lockd=true}dy=Math.max(0,my);p.style.animation='none';p.style.transition='none';p.style.transform='translateY('+dy+'px)';ov.style.background='rgba(10,8,16,'+(.5*(1-Math.min(dy/400,1)))+')'},{passive:true});
+ ov.addEventListener('touchend',()=>{if(!on||!p||!lockd){on=false;return}on=false;const q=p;q.style.transition='transform .35s cubic-bezier(.32,.72,0,1)';
+  if(dy>110){q.style.transform='translateY(100%)';ov.style.transition='background .25s';ov.style.background='rgba(10,8,16,0)';setTimeout(()=>{ov.style.transition='';close()},250)}else{ov.style.background='';q.style.transform='';setTimeout(()=>{q.style.transition=''},360)}})}
+dragSheet($('#sheet'),hideSheet);
+$('#sheet').onclick=e=>{if(e.target.id=='sheet')closeSheet()};
+addEventListener('keydown',e=>{if(e.key=='Escape'&&!$('#sheet').hidden)closeSheet()});
+const put=(p,...k)=>p.append(...k.flat(3).filter(x=>x!=null&&x!==false));
+const head=(kick,title,back)=>[back&&h('button',{class:'ghost',onclick:back},t('back')),h('div',{class:'ph'},h('div',{},h('div',{class:'kick'},kick),h('h2',{},title)),h('button',{class:'x','aria-label':t('close'),onclick:closeSheet},'×'))];
+const enc=encodeURIComponent;
+const URLS={gi:q=>'https://www.google.com/search?tbm=isch&q='+enc(q),pin:q=>'https://www.pinterest.com/search/pins/?q='+enc(q),uns:q=>'https://unsplash.com/s/photos/'+enc(q.trim().replace(/\s+/g,'-')),yt:q=>'https://www.youtube.com/results?search_query='+enc(q),tt:q=>'https://www.tiktok.com/search?q='+enc(q)};
+const ext=(cls,href,...k)=>h('a',{class:cls,href,target:'_blank',rel:'noopener noreferrer'},...k);
+const lks=(q,ks,lead)=>h('div',{class:'lks'},lead&&h('span',{class:'lkl'},lead),ks.map(k=>ext('lk',URLS[k](q),t(k))));
+const exSec=(q,ks,note)=>h('div',{class:'sec'},h('h3',{},t('exr')),lks(q,ks),h('p',{class:'note'},t(note)));
+const sec=(k,txt,cls)=>h('div',{class:'sec'},h('h3',{},t(k)),h('p',{class:cls},txt));
+const shotRow=(s,on)=>h('button',{class:'row',onclick:on},thumb(s.id),h('span',{},h('b',{},L(s.n)),h('small',{},L(s.w))),h('i',{class:'chev','aria-hidden':'true'},'›'));
+function shotSheet(s,back){openSheet(p=>put(p,head(t(s.c),L(s.n),back),slides(s.id,L(s.n)),s.c=='mv'?exSec(s.q,['yt','tt','pin'],'exv'):exSec(s.q,['pin','gi','uns'],'exp'),sec('when',L(s.w)),sec('how',L(s.h)),sec('mist',L(s.m))))}
+function poseSheet(o){openSheet(p=>put(p,head(t(o.c),L(o.n)),slides(o.id,L(o.n)),exSec(o.q,['pin','gi','uns'],'exp'),sec('pos',L(o.h)),sec('say',L(o.s),'say')))}
+function momSheet(m){const open=()=>openSheet(p=>{const on=!!cks()[m.i];put(p,head(L(EVI[S.ev].n)+' · '+L(m.ph.n),L(m.n)),m.must&&h('small',{class:'must'},t('must')),slides('m_'+S.ev+m.i,L(m.n)),sec('what',L(m.tip)),exSec(m.q,['gi','yt','tt'],'exm'),h('div',{class:'sec'},h('h3',{},t('rec')),m.sh.map(id=>shotRow(SHI[id],()=>shotSheet(SHI[id],open))),h('p',{class:'note'},t('rech'))),h('button',{class:'btn'+(on?' dn':''),onclick:()=>{tog(m.i);render();redraw()}},t(on?'undo':'gotm')))});open()}
+
+/* ---------- views ---------- */
+const chips=(list,cur,set)=>h('div',{class:'chips'},list.map(([k,l])=>h('button',{class:'chip'+(k==cur?' on':''),'aria-pressed':String(k==cur),onclick:()=>{const ch=k!=cur;set(k);render();if(ch)play($('#v'))}},l)));
+const seg=(list,cur,set)=>h('div',{class:'seg'},list.map(([k,l])=>h('button',{class:k==cur?'on':'','aria-pressed':String(k==cur),onclick:()=>{const ch=k!=cur;set(k);render();if(ch)play($('#v'))}},l)));
+const CK='<i><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5"/></svg></i>';
+
+function moView(){
+  const ev=EVI[S.ev],ck=cks(),all=ev.all,done=all.filter(m=>ck[m.i]).length,must=all.filter(m=>m.must),md=must.filter(m=>ck[m.i]).length;
+  const nx=must.find(m=>!ck[m.i])||all.find(m=>!ck[m.i]);
+  const show=m=>S.flt=='all'||(S.flt=='must'&&m.must)||(S.flt=='left'&&!ck[m.i]);
+  const groups=ev.ph.map(p=>{const ms=p.ms.filter(show);return ms.length?[h('h3',{},L(p.n)),h('div',{class:'group'},ms.map(m=>h('div',{class:'mrow'+(ck[m.i]?' done':'')},
+    h('button',{class:'ck','aria-pressed':String(!!ck[m.i]),'aria-label':t('got')+': '+L(m.n),html:CK,onclick:()=>{tog(m.i);render()}}),
+    h('button',{class:'mb',onclick:()=>momSheet(m)},h('span',{},h('b',{},L(m.n)),h('small',{},m.must&&h('span',{class:'must'},t('must')),(m.must?' · ':'')+nShots(m.sh.length)+(GAL['m_'+S.ev+m.i]?' · '+GAL['m_'+S.ev+m.i].length+(S.lang=='ro'?' poziții':' poses'):''))),h('i',{class:'chev','aria-hidden':'true'},'›')))))]:[]}).flat();
+  return [h('h2',{},t('mo')),h('p',{class:'note'},t('moh')),
+    chips(EV.map(e=>[e.k,L(e.n)]),S.ev,k=>{S.ev=k;S.rs=false;sv('mh_ev',k)}),
+    nx?h('div',{class:'callout'},h('div',{class:'kick'},h('i',{class:'dot'}),t('next')+' · '+L(nx.ph.n)),h('b',{class:'nt'},L(nx.n)),h('p',{},L(nx.tip)),h('div',{class:'cta'},h('button',{class:'btn s',onclick:()=>momSheet(nx)},t('see')),h('button',{class:'btn s gh',onclick:()=>{tog(nx.i);render();play($('#v .callout'))}},t('got'))))
+      :h('div',{class:'callout'},h('b',{class:'nt',style:'margin-top:0'},t('alld')),h('p',{},t('alldp')),h('div',{class:'cta'},h('button',{class:'btn s',onclick:()=>go('ed')},t('toed')))),
+    h('div',{class:'stats'},h('div',{class:'stat'},h('b',{},String(done),h('span',{},'/'+all.length)),h('small',{},t('caught'))),h('div',{class:'stat'},h('b',{},String(md),h('span',{},'/'+must.length)),h('small',{},t('mustf'))),h('div',{class:'stat'},h('b',{},String(all.length-done)),h('small',{},t('left')))),
+    h('div',{class:'bar'},h('i',{style:'width:'+Math.round(done/all.length*100)+'%'})),
+    seg([['all',t('all')],['must',t('mustf')],['left',t('left')]],S.flt,k=>S.flt=k),
+    groups.length?groups:h('p',{class:'note'},t('none')),
+    done?h('button',{class:'ghost',onclick:()=>{if(S.rs){delete S.ck[S.ev];sv('mh_ck',S.ck);S.rs=false;toast(t('resetok'))}else S.rs=true;render()}},t(S.rs?'reset2':'reset')):null];
+}
+function shView(){
+  const cats=['fr','an','mv','lt'];
+  return [h('h2',{},t('sh')),h('p',{class:'note'},t('shh')),chips([['all',t('all')],...cats.map(c=>[c,t(c)])],S.sc,k=>S.sc=k),
+    cats.filter(c=>S.sc=='all'||S.sc==c).map(c=>[h('h3',{},t(c)),SH.filter(s=>s.c==c).map(s=>shotRow(s,()=>shotSheet(s)))])];
+}
+function poView(){
+  const cats=['cu','gr','pt','sp'];
+  return [h('h2',{},t('po')),h('p',{class:'note'},t('poh')),chips([['all',t('all')],...cats.map(c=>[c,t(c)])],S.pc,k=>S.pc=k),
+    cats.filter(c=>S.pc=='all'||S.pc==c).map(c=>[h('h3',{},t(c)),PO.filter(o=>o.c==c).map(o=>h('button',{class:'row',onclick:()=>poseSheet(o)},thumb(o.id),h('span',{},h('b',{},L(o.n)),h('small',{},L(o.s))),h('i',{class:'chev','aria-hidden':'true'},'›')))])];
+}
+const PLAY='<svg class="dg" viewBox="0 0 100 80" aria-hidden="true"><rect class="fl-c" x="16" y="14" width="68" height="52" rx="12"/><path class="fl-a" d="M43 28v24l21-12z"/></svg>';
+function edView(){
+  const out=[h('h2',{},t('ed')),seg([['ex',t('ex')],['prep',t('prep')]],S.es,k=>S.es=k)];
+  if(S.es=='ex'){
+    out.push(h('p',{class:'note'},t('edh')),VID.map(c=>[h('h3',{},L(c)),c[3].map(v=>ext('row','https://www.youtube.com/watch?v='+v[0],h('span',{class:'th',html:PLAY}),h('span',{},h('b',{},v[1]),h('small',{},v[2]+' · YouTube')),h('i',{class:'chev out','aria-hidden':'true'},'↗'))),lks(c[2],['yt','tt'],t('more'))]),
+      h('h3',{},t('other')),h('div',{class:'group'},MORE.map(m=>h('div',{class:'srow'},h('b',{},L(m)),lks(m[2],['yt','tt'])))));
+  }else{
+    out.push(h('h3',{style:'margin-top:4px'},t('chk')),h('div',{class:'group'},PREP.map((p,i)=>h('div',{class:'mrow'+(S.prep[i]?' done':'')},h('button',{class:'ck','aria-pressed':String(!!S.prep[i]),'aria-label':L(p),html:CK,onclick:()=>{if(S.prep[i])delete S.prep[i];else S.prep[i]=1;sv('mh_pr',S.prep);render()}}),h('div',{class:'mb'},h('span',{},h('b',{style:'font-weight:600'},L(p))))))),
+      h('div',{class:'group'},h('button',{class:'srow',role:'switch','aria-checked':String(S.wake),onclick:wake},h('span',{},h('b',{style:'display:block'},t('wake')),h('small',{},t('wakeh'))),h('i',{class:'tg'+(S.wake?' on':'')}))),
+      h('h3',{},t('etq')),h('div',{class:'callout'},h('ul',{class:'etq'},ETQ.map(e=>h('li',{},L(e))))));
+  }
+  return out;
+}
+let wl=null;
+async function lock(){try{wl=await navigator.wakeLock.request('screen');return true}catch(e){return false}}
+async function wake(){if(S.wake){S.wake=false;try{wl&&await wl.release()}catch(e){}wl=null}else if(await lock()){S.wake=true;toast(t('wakeon'))}else toast(t('wakeno'));render()}
+document.addEventListener('visibilitychange',()=>{if(S.wake&&document.visibilityState=='visible')lock()});
+
+const VIEWS={mo:moView,sh:shView,po:poView,ed:edView};
+const tabs=[...document.querySelectorAll('.tab')];
+function render(anim){
+  document.documentElement.lang=S.lang;
+  $('#tg').textContent=t('tag');$('#lg').textContent=S.lang=='ro'?'EN':'RO';$('#lg').setAttribute('aria-label',t('lgl'));$('#ft').textContent=t('ft');
+  tabs.forEach((b,i)=>{const on=b.dataset.t==S.tab;b.classList.toggle('on',on);b.querySelector('span').textContent=t(b.dataset.t);if(on){b.setAttribute('aria-current','page');$('.ind').style.setProperty('--i',i)}else b.removeAttribute('aria-current')});
+  const v=$('#v');v.replaceChildren(...VIEWS[S.tab]().flat(3).filter(Boolean));
+  if(anim){play(v);scrollTo(0,0)}
+}
+function go(k){S.tab=k;S.rs=false;sv('mh_t',k);render(true)}
+tabs.forEach(b=>b.onclick=()=>{if(b.dataset.t==S.tab){scrollTo({top:0,behavior:RM?'auto':'smooth'});return}go(b.dataset.t)});
+addEventListener('scroll',()=>$('header').classList.toggle('sc',scrollY>6),{passive:true});
+$('#lg').onclick=()=>{S.lang=S.lang=='ro'?'en':'ro';sv('mh_l',S.lang);render();redraw()};
+render();
+}
+</script>
+</body>
+</html>
