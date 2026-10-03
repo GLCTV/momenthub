@@ -147,7 +147,9 @@ header{transition:box-shadow .25s}header.sc{box-shadow:0 1px 0 var(--line)}
 .panel>.sl{margin-top:10px}
 .sl img{display:block;width:100%;aspect-ratio:100/80;object-fit:cover;border-radius:18px;background:var(--well)}
 .sl figcaption{position:absolute;left:10px;right:10px;bottom:10px;display:flex}
-.ph{position:relative}
+.pw{position:relative}
+.hb{flex:none;display:grid;gap:6px 8px;justify-items:end}.lg{white-space:nowrap;display:inline-flex;align-items:center}header>div:first-child{min-width:0}
+.lg.sm{padding:3px 10px;font-size:12px;font-weight:600;color:var(--acc)}#inst[hidden]{display:none}
 .slides{align-items:flex-start}
 .sl .cap{padding:10px 4px 0}
 .sl .cap b{display:block;font-size:16px;line-height:1.3}
@@ -190,11 +192,11 @@ header{transition:box-shadow .25s}header.sc{box-shadow:0 1px 0 var(--line)}
 .ind{position:absolute;left:12px;top:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px));width:calc((100% - 24px)/4);border-radius:14px;background:color-mix(in srgb,var(--acc) 14%,transparent);transform:translateX(calc(var(--i,0)*100%));transition:transform .4s cubic-bezier(.32,.72,0,1);pointer-events:none}
 #toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:20;max-width:calc(100% - 32px);text-align:center}
 #toast.on{opacity:1}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
-<header><div><h1>MomentHub</h1><small id="tg"></small></div><button class="lg" id="lg"></button></header>
+<header><div><h1>MomentHub</h1><small id="tg"></small></div><div class="hb"><button class="lg" id="lg"></button><button class="lg sm" id="inst" hidden></button></div></header>
 <main id="v"></main>
 <footer id="ft"></footer>
 <div id="sheet" hidden></div>
@@ -345,7 +347,7 @@ const EVENTS=[['w','Nuntă','Wedding',`#Pregătiri|Getting ready
 1|f1 a1|Poza de grup|The group photo|Fă-o devreme, cât e toată lumea.|Do it early while everyone is there.|event group photo
 1|a5 f1|Cadrul de final|The closing shot|Cineva plecând, luminile stinse, un ultim pahar.|Someone leaving, lights going out, a last glass.|end of the party empty room`]];
 
-const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const RM=false; /* same as GymHub: animations always play */
 const $=s=>document.querySelector(s);
 const h=(t,a={},...k)=>{const e=document.createElement(t);for(const n in a){const v=a[n];if(v==null||v===false)continue;n=='class'?e.className=v:n=='html'?e.innerHTML=v:n.startsWith('on')?e[n]=v:e.setAttribute(n,v)}e.append(...k.flat().filter(x=>x!=null&&x!==false));return e};
 const ld=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
@@ -403,7 +405,7 @@ by:'Foto:',sld:'Imaginea',prv:'Imaginea anterioară',nxt:'Imaginea următoare',e
 gi:'Google Imagini',pin:'Pinterest',uns:'Unsplash',yt:'YouTube',tt:'TikTok',
 ex:'Exemple',prep:'Pregătire',edh:'Montaje reale de la evenimente, făcute de videografi. Se deschid pe YouTube.',more:'Mai multe:',other:'Alte evenimente',
 etq:'Bune maniere',chk:'Înainte să pleci de acasă',wake:'Ține ecranul aprins',wakeh:'Cât timp aplicația e deschisă',wakeno:'Telefonul nu permite asta aici.',wakeon:'Ecranul rămâne aprins',
-ft:'Realizat de GLC_TV. © 2026 Toate drepturile rezervate.',lgl:'Switch to English'},
+ft:'Realizat de GLC_TV. © 2026 Toate drepturile rezervate.',lgl:'Switch to English',inst_s:'Instalează aplicația',inst_t:'Instalează MomentHub',inst_a:'Adaugă MomentHub pe ecranul principal. Se deschide ca o aplicație și merge și fără internet.',inst_ios:'Pe iPhone: apasă butonul Partajare din Safari, apoi „Adăugare la ecranul principal”. Se deschide ca o aplicație și merge și fără internet.',inst_btn:'Instalează'},
 en:{tag:'Moments, shots, poses, edits',mo:'Moments',sh:'Shots',po:'Poses',ed:'Edits',all:'All',mustf:'Must-have',left:'Remaining',must:'★ Must-have',
 next:'Up next',see:'See the shots',got:'Got it',gotm:'I got this moment',undo:'Captured. Tap to undo',caught:'Captured',
 alld:'You captured everything on the list',alldp:'See how edits from the same kind of event look.',toed:'See real edits',
@@ -415,7 +417,7 @@ by:'Photo:',sld:'Image',prv:'Previous image',nxt:'Next image',exr:'Real examples
 gi:'Google Images',pin:'Pinterest',uns:'Unsplash',yt:'YouTube',tt:'TikTok',
 ex:'Examples',prep:'Prep',edh:'Real event edits made by videographers. They open on YouTube.',more:'More:',other:'Other events',
 etq:'Good manners',chk:'Before you leave home',wake:'Keep the screen on',wakeh:'While the app is open',wakeno:'Your phone does not allow this here.',wakeon:'The screen stays on',
-ft:'Made by GLC_TV. © 2026 All rights reserved.',lgl:'Schimbă în română'}};
+ft:'Made by GLC_TV. © 2026 All rights reserved.',lgl:'Schimbă în română',inst_s:'Install app',inst_t:'Install MomentHub',inst_a:'Add MomentHub to your home screen. It opens like an app and works without internet.',inst_ios:'On iPhone: tap the Share button in Safari, then Add to Home Screen. It opens like an app and works without internet.',inst_btn:'Install'}};
 
 /* ---------- state ---------- */
 const S={lang:ld('mh_l','ro'),tab:ld('mh_t','mo'),ev:ld('mh_ev','w'),ck:ld('mh_ck',{}),prep:ld('mh_pr',{}),flt:'all',sc:'all',pc:'all',es:'ex',wake:false,rs:false};
@@ -503,7 +505,7 @@ const GAL={"m_w11":[{"src":"poses/gw01.jpg","by":"Jarad Lee","id":"qD9m3Q3p9E0",
 function slides(id,label){
   const ph=PHOTOS[id],gal=GAL[id]||[],items=[];
   let fix=()=>{};
-  const fig=(p,alt,cap,lazy)=>{const at={src:p.src,alt,width:'797',height:'637',decoding:'async',onerror:e=>{e.target.closest('.sl').remove();fix()}};if(lazy)at.loading='lazy';return h('figure',{class:'sl'},h('div',{class:'ph'},h('img',at),p.by&&h('figcaption',{},h('a',{href:'https://unsplash.com/photos/'+p.id,target:'_blank',rel:'noopener noreferrer'},t('by')+' '+p.by+' · Unsplash'))),cap)};
+  const fig=(p,alt,cap,lazy)=>{const at={src:p.src,alt,width:'797',height:'637',decoding:'async',onerror:e=>{e.target.closest('.sl').remove();fix()}};if(lazy)at.loading='lazy';return h('figure',{class:'sl'},h('div',{class:'pw'},h('img',at),p.by&&h('figcaption',{},h('a',{href:'https://unsplash.com/photos/'+p.id,target:'_blank',rel:'noopener noreferrer'},t('by')+' '+p.by+' · Unsplash'))),cap)};
   if(ph)items.push(fig(ph,label));
   gal.forEach(g=>items.push(fig(g,L(g.n),h('div',{class:'cap'},h('b',{},L(g.n)),h('p',{},L(g.d))),items.length>1)));
   if(D[id])items.push(h('div',{class:'sl'},thumb(id,1,label)));
@@ -608,10 +610,20 @@ function render(anim){
   tabs.forEach((b,i)=>{const on=b.dataset.t==S.tab;b.classList.toggle('on',on);b.querySelector('span').textContent=t(b.dataset.t);if(on){b.setAttribute('aria-current','page');$('.ind').style.setProperty('--i',i)}else b.removeAttribute('aria-current')});
   const v=$('#v');v.replaceChildren(...VIEWS[S.tab]().flat(3).filter(Boolean));
   if(anim){play(v);scrollTo(0,0)}
+  updInst();
 }
 function go(k){S.tab=k;S.rs=false;sv('mh_t',k);render(true)}
 tabs.forEach(b=>b.onclick=()=>{if(b.dataset.t==S.tab){scrollTo({top:0,behavior:RM?'auto':'smooth'});return}go(b.dataset.t)});
 addEventListener('scroll',()=>$('header').classList.toggle('sc',scrollY>6),{passive:true});
+/* ---------- install ---------- */
+let IP=null;
+const SITE=!!document.querySelector('link[rel=manifest]')&&/^https?:$/.test(location.protocol);
+const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone,isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
+function updInst(){const b=$('#inst');if(!b)return;b.textContent=t('inst_s');b.hidden=!(SITE&&S.tab=='mo'&&!standalone()&&(IP||isIOS()))}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();IP=e;updInst()});addEventListener('appinstalled',()=>{IP=null;updInst()});
+const instSheet=()=>openSheet(p=>put(p,head('MomentHub',t('inst_t')),h('div',{class:'callout'},h('p',{style:'margin:0'},IP?t('inst_a'):t('inst_ios')),IP?h('button',{class:'btn s',style:'margin-top:10px',onclick:async()=>{IP.prompt();try{await IP.userChoice}catch(e){}IP=null;updInst();closeSheet()}},t('inst_btn')):null)));
+$('#inst').onclick=async()=>{if(IP){IP.prompt();try{await IP.userChoice}catch(e){}IP=null;updInst()}else instSheet()};
+if(SITE&&'serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(r=>{if(navigator.connection&&navigator.connection.saveData)return;const l=[...Object.values(PHOTOS),...Object.values(GAL).flat()].map(p=>p.src);setTimeout(()=>r.active&&r.active.postMessage({precache:l}),2500)}).catch(()=>{}));
 $('#lg').onclick=()=>{S.lang=S.lang=='ro'?'en':'ro';sv('mh_l',S.lang);render();redraw()};
 render();
 }
