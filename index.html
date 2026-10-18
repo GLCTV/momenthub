@@ -240,10 +240,11 @@ header{transition:box-shadow .25s}header.sc{box-shadow:0 1px 0 var(--line)}
 .pnav{position:absolute;top:50%;margin-top:-22px;z-index:2}
 .pnav.pv{left:12px}.pnav.nx{right:12px}
 @media (hover:none){.pnav{display:none}}
-.clt{display:inline-block;font:700 13px/1.2 var(--tc);font-variant-numeric:tabular-nums;color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,transparent);padding:4px 9px;border-radius:99px;margin-bottom:8px}
-.clc b{display:block;font-size:17px;line-height:1.3}
-.clc p{margin:6px 0 0}
-.igw{margin-top:8px;display:flex;justify-content:center;min-height:120px}
+.igw{display:flex;justify-content:center;min-height:420px}
+.clcar{margin-top:6px}
+.clcar .cnav{top:200px}
+.clp{text-align:center}
+.clby{display:inline-block;margin-top:8px;padding:6px 12px;border-radius:99px;background:var(--card);color:var(--ink);font-weight:700;font-size:14px;text-decoration:none}
 .igw .instagram-media{min-width:0!important;width:100%!important;max-width:420px!important;margin:0!important}
 .pth{display:block;width:100%;height:100%;background:var(--well) url(poze/miniaturi.jpg) 0 0/1300% 1300% no-repeat}
 
@@ -814,8 +815,8 @@ function viewer(list,start,o=PHO){
 /* ---------- Special Day: same gallery as Poze, pins from Pinterest ----------
    specialday.json = [[pin id, image path on i.pinimg.com, author], ...].
    Images stay hosted by Pinterest; every photo links to its pin and names who posted it. */
-Object.assign(T.ro,{sd:'Special Day',sd_src:'de pe Pinterest',sd_by:'Pinterest',sd_ld:'Se încarcă pozele…',sd_err:'Pozele nu s-au putut încărca. Verifică internetul și încearcă din nou.',sd_re:'Reîncearcă',sd_all:'Toate',sd_cl:'Clipuri',sd_play:'▶ Vezi video aici',sd_clsrc:'de pe Instagram',sd_mom:'momente',sd_ig:'Vezi pe Instagram',sd_clnote:'Instagram nu lasă clipul să pornească de la o anumită secundă, așa că lângă fiecare moment scrie intervalul din video.',sd_none:'Nicio poză la Favorite încă. Deschide o poză și atinge inima.'});
-Object.assign(T.en,{sd:'Special Day',sd_src:'from Pinterest',sd_by:'Pinterest',sd_ld:'Loading photos…',sd_err:"Photos couldn't load. Check your connection and try again.",sd_re:'Try again',sd_all:'All',sd_cl:'Clips',sd_play:'▶ Watch here',sd_clsrc:'from Instagram',sd_mom:'moments',sd_ig:'View on Instagram',sd_clnote:"Instagram doesn't let a clip start at a given second, so each moment shows its time range in the video.",sd_none:'No favorites yet. Open a photo and tap the heart.'});
+Object.assign(T.ro,{sd:'Special Day',sd_src:'de pe Pinterest',sd_by:'Pinterest',sd_ld:'Se încarcă pozele…',sd_err:'Pozele nu s-au putut încărca. Verifică internetul și încearcă din nou.',sd_re:'Reîncearcă',sd_all:'Toate',sd_cl:'Clipuri',sd_clsrc:'de pe Instagram',sd_vids:'clipuri',sd_none:'Nicio poză la Favorite încă. Deschide o poză și atinge inima.'});
+Object.assign(T.en,{sd:'Special Day',sd_src:'from Pinterest',sd_by:'Pinterest',sd_ld:'Loading photos…',sd_err:"Photos couldn't load. Check your connection and try again.",sd_re:'Try again',sd_all:'All',sd_cl:'Clips',sd_clsrc:'from Instagram',sd_vids:'clips',sd_none:'No favorites yet. Open a photo and tap the heart.'});
 let SD=null,SDE=false;
 let SDF=ld('mh_sdfav',{});if(typeof SDF!='object'||!SDF)SDF={};
 S.sdv=ld('mh_sdv','all');if(S.sdv!='fav'&&S.sdv!='cl')S.sdv='all';
@@ -825,56 +826,29 @@ const SDO={title:()=>t('sd'),name:sdName,chip:i=>SD[i][2]?t('sd_by')+' · '+SD[i
   src:i=>PIN+'736x/'+SD[i][1],th:i=>h('img',{src:PIN+'236x/'+SD[i][1],alt:'',loading:'lazy',decoding:'async'}),
   fav:SDF,fk:'mh_sdfav',go:i=>window.open('https://www.pinterest.com/pin/'+SD[i][0]+'/','_blank','noopener')};
 function sdLoad(){SDE=false;fetch('specialday.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{SD=Array.isArray(d)?d:[];if(S.tab=='sd')render()}).catch(()=>{SDE=true;if(S.tab=='sd')render()})}
-/* Clips: moments of 5-10 s found in real wedding videos. The video stays on Instagram (official embed); each moment gives its time range. */
-const SDC=[{u:'https://www.instagram.com/p/DXnZIn9iKdn/',by:'sonnyabdulphotography',m:[
- [0,5,'Mâinile și buchetul, în mers','Hands and bouquet, walking','Filmează de aproape doar mâinile împreunate și buchetul, în timp ce mirii merg încet spre tine. Un prim cadru perfect, cu numele mirilor scrise peste.','Film only their joined hands and the bouquet up close as they walk slowly toward you. A perfect opening shot, with the couple’s names written over it.'],
- [4,10,'Prin arcadă, apoi nas în nas','Through the archway, then nose to nose','Un cadru larg prin arcadă sau poartă, cum ies mirii, apoi treci la prim-plan din profil: nas în nas, cu cerul în spate. La final, trena rochiei care alunecă pe jos.','A wide shot through an archway or gate as they walk out, then cut to a close-up in profile: nose to nose, sky behind them. End on the dress train gliding along the ground.'],
- [10,16,'Intrarea în sală și primul dans','The grand entrance and first dance','Intrarea mirilor printre invitați, invitații care filmează cu telefoanele, apoi primul dans cu fum greu sau lumini. Alternează cadre de aproape cu unul larg, de sus.','The couple entering through the guests, guests filming on their phones, then the first dance with low fog or lights. Mix close shots with one wide shot from above.'],
- [16,23,'Plimbarea la apus','The golden-hour walk','Mirii merg de mână cu soarele în spate, apoi spre tine, pe alei sau terase. Termină cu ea punându-i mâna pe obraz. Filmează cu soarele jos, în ultima oră de lumină.','The couple walks hand in hand with the sun behind them, then toward you along paths or terraces. End with her hand on his cheek. Shoot in the last hour of light, with the sun low.'],
- [23,28,'Sărut pe frunte și râsul lui','Forehead kiss and his laugh','Cadre apropiate, aproape statice: el o sărută pe frunte, apoi un portret în doi, apoi el râzând. Spune-le ceva amuzant ca râsul să fie natural.','Close, almost still shots: he kisses her forehead, then a portrait of the two, then him laughing. Tell them something funny so the laugh is real.'],
- [28,31,'Cadru larg de final, cu trena','Wide closing shot with the train','Un cadru de departe, pe o alee lungă, cu trena rochiei întinsă și mirii mici în cadru. Merge ca ultim cadru din montaj.','A shot from far away on a long path, the dress train spread out and the couple small in frame. Works as the last shot of the edit.']]},
-{u:'https://www.instagram.com/p/DVLni43DKh5/',by:'nisa_cafarova_',m:[
- [0,5,'Mâinile care se caută','Hands reaching for each other','Prim-plan cu mâinile lor care se apropie încet până aproape se ating, pe un fundal simplu. Arată foarte bine alb-negru, la început de clip.','A close-up of their hands slowly reaching until they almost touch, on a plain background. Looks great in black and white, at the start of a clip.'],
- [5,11,'Buchetul și verigheta, macro','Bouquet and ring, macro','Ea primește buchetul din mâna lui, apoi el îi pune verigheta pe deget. Filmează foarte de aproape, cu lumina de la fereastră în spate.','She takes the bouquet from his hand, then he slides the ring on her finger. Film very close, with window light behind.'],
- [11,17,'Degete împletite, unul lângă altul','Fingers intertwined, side by side','Mirii stau unul lângă altul, filmezi doar de la talie în jos: mâinile li se ating, apoi își împletesc degetele. Un cadru calm, bun de final.','They stand side by side and you film from the waist down: their hands touch, then the fingers lace together. A calm shot, good for the ending.']]},
-{u:'https://www.instagram.com/p/DdZVA5zKZLZ/',by:'victor_ciupitu_videography',m:[
- [8,17,'Pregătirile, la mire și la mireasă','Getting ready, groom and bride','Alternează: prietenii îl ajută pe mire să-și închidă cămașa, apoi mireasa râde cu domnișoara de onoare. Râsetele naturale contează mai mult decât poza perfectă.','Cut back and forth: friends help the groom button his shirt, then the bride laughs with her bridesmaid. Natural laughs matter more than a perfect pose.'],
- [26,36,'Prima întâlnire, acasă la mireasă','First look at the bride’s home','Mirele intră, îi dă buchetul și o sărută. Filmează din lateral, cu amândoi în cadru, ca să prinzi și reacția lui, și pe a ei.','The groom walks in, hands her the bouquet and kisses her. Film from the side with both in frame, to catch his reaction and hers.'],
- [79,86,'Cununia religioasă, cu coroanele','The church ceremony, with the crowns','Mireasa zâmbind la intrarea în biserică, apoi mirii cu coroanele în fața altarului. Stai lateral și nu încurca preotul; cadrele scurte sunt suficiente.','The bride smiling at the church entrance, then the couple wearing the crowns at the altar. Stand to the side and keep out of the priest’s way; short shots are enough.'],
- [86,92,'Plimbare prin oraș, la apus','Walk through town at sunset','Mirii merg de mână pe o stradă veche, apoi printr-un parc. Pune camera în fața lor și mergi cu spatele, încet.','The couple walks hand in hand down an old street, then through a park. Hold the camera in front of them and walk backward, slowly.'],
- [131,139,'Petrecerea în toi','The party in full swing','Mirele aruncat în sus de prieteni, DJ-ul, ringul plin. Mișcă și tu camera, apropie-te de oameni și filmează de jos.','The groom tossed up by friends, the DJ, a packed dance floor. Move the camera too, get close to people and film from low.'],
- [139,144,'Primul dans, în fum greu','First dance in low fog','Fum greu pe ring și mirii dansând la mijloc. Cel mai bine iese un cadru larg de sus, din balcon sau de pe un scaun.','Low fog on the floor and the couple dancing in the middle. A wide shot from above works best, from a balcony or a chair.']]},
-{u:'https://www.instagram.com/p/DXQBy_dADuy/',by:'storytellersfilms',m:[
- [0,7,'Locația și decorul','The venue and decor','Câteva cadre de ambianță înainte de oameni: clădirea, aranjamentele florale de aproape, scaunele de la ceremonie. Fă-le înainte să sosească invitații.','A few atmosphere shots before any people: the building, the flower arrangements up close, the ceremony chairs. Get them before guests arrive.'],
- [13,18,'Reacția mirelui la altar','The groom’s reaction at the altar','Cadru larg cu locul ceremoniei, apoi fața mirelui când o vede pe mireasă venind, apoi zâmbetul ei. Stai cu camera pe el, nu pe ea.','A wide shot of the ceremony spot, then the groom’s face as he sees the bride coming, then her smile. Keep the camera on him, not her.'],
- [18,24,'Ieșirea și alaiul','The exit and the bridal party','Mirii ies de la ceremonie, apoi un cadru larg cu ei în fața clădirii și toată echipa (nași, domnișoare, cavaleri) aliniată.','The couple leaves the ceremony, then a wide shot of them in front of the building and the whole party (bridesmaids, groomsmen) lined up.'],
- [35,42,'Ringul de dans și plecarea','The dance floor and the getaway','Invitații dansând, primul dans pe un ring cu model, apoi mirii care urcă în mașină. Ultimul cadru: ușa care se închide.','Guests dancing, the first dance on a patterned floor, then the couple getting into the car. Last shot: the door closing.']]},
-{u:'https://www.instagram.com/p/DaN8-6VIOrP/',by:'sunrisefilmsart',m:[
- [5,13,'Pregătiri cu energie','High-energy getting ready','Mireasa se învârte în halat, mirele dansează prin cameră. Pune muzică și lasă-i să se joace; cadrele scurte, tăiate pe ritm, fac tot clipul.','The bride twirls in her robe, the groom dances around the room. Put on music and let them play; short shots cut to the beat make the whole clip.'],
- [13,20,'Mirele aruncat în sus','The groom tossed in the air','Prietenii îl aruncă pe mire în aer, apoi un portret calm cu mirii, apoi domnișoara cu flori. Contrastul dintre haos și liniște ține atenția.','Friends toss the groom in the air, then a calm portrait of the couple, then the flower girl. The contrast between chaos and calm holds attention.'],
- [20,26,'Domnișoarele cu umbreluțe, la apus','Bridesmaids with parasols at sunset','La apus, mireasa și domnișoarele ridică buchetele și umbrelele albe și strigă. Filmează de jos, cu cerul în spate.','At sunset, the bride and bridesmaids raise their bouquets and white parasols and cheer. Film from low, with the sky behind.']]},
-{u:'https://www.instagram.com/p/DYhfNuSRtwj/',by:'gideonemoraesfilmes',m:[
- [5,12,'Mireasa în ușă, mirele așteaptă','The bride in the doorway, the groom waiting','Ea apare încadrată de o ușă sau o poartă, apoi mirele care așteaptă printre luminițe, apoi un prim-plan al ei prin voal.','She appears framed by a door or gate, then the groom waiting among string lights, then a close-up of her through the veil.'],
- [34,40,'Mâna întinsă și reacția lui','The reached-out hand and his reaction','El întinde mâna, ea i-o prinde, filmat de jos. Apoi treci pe fața lui. Cadrul cu mâinile se face din spatele mirelui.','He reaches out, she takes his hand, filmed from below. Then cut to his face. The hands shot is done from behind the groom.'],
- [51,56,'Ieșirea cu artificii de mână','The sparkler exit','Invitații fac un culoar cu artificii de mână, iar mirii trec printre ei. Filmează din fața lor, mergând cu spatele.','Guests form an aisle with sparklers and the couple walks through. Film from in front of them, walking backward.'],
- [76,85,'Sărutul la altar, printre flori','The kiss at the altar among flowers','Cadru larg cu altarul plin de flori, apoi apropie-te de sărut. Pune flori în prim-plan, ca să pară că filmezi printre ele.','A wide shot of the flower-filled altar, then move in on the kiss. Put flowers in the foreground so it feels like you’re filming through them.']]}];
-const mmss=x=>Math.floor(x/60)+':'+String(x%60).padStart(2,'0');
+/* Clips: real wedding reels kept on Instagram (official embed), shown as a side-swipe carousel like the photos. */
+const SDC=[['DXnZIn9iKdn','sonnyabdulphotography'],['DVLni43DKh5','nisa_cafarova_'],['DdZVA5zKZLZ','victor_ciupitu_videography'],['DXQBy_dADuy','storytellersfilms'],['DaN8-6VIOrP','sunrisefilmsart'],['DYhfNuSRtwj','gideonemoraesfilmes']].map(([id,by])=>({u:'https://www.instagram.com/p/'+id+'/',by}));
 let IGJ=false;
 function igEmbed(){if(window.instgrm&&instgrm.Embeds){instgrm.Embeds.process();return}if(IGJ)return;IGJ=true;const sc=document.createElement('script');sc.async=true;sc.src='https://www.instagram.com/embed.js';document.head.append(sc)}
-S.sdo=0;
+S.sdc=0;
 function sdClips(){
   setTimeout(igEmbed,0);
-  return [h('p',{class:'note',style:'margin-top:4px'},t('sd_clnote')),SDC.map((c,k)=>[
-    h('div',{class:'card',style:'margin-top:22px'},h('div',{class:'kick'},t('sd_cl')+' '+(k+1)+' · '+c.m.length+' '+t('sd_mom')),h('b',{style:'display:block;font-size:17px;margin-top:2px'},'@'+c.by),
-      S.sdo===k?h('div',{class:'igw'},h('blockquote',{class:'instagram-media','data-instgrm-permalink':c.u,'data-instgrm-version':'14'},h('a',{href:c.u,target:'_blank',rel:'noopener'},'@'+c.by)))
-        :h('button',{class:'lk',style:'margin-top:10px;background:var(--well)',onclick:()=>{S.sdo=k;render()}},t('sd_play'))),
-    c.m.map(m=>h('div',{class:'card clc'},h('span',{class:'clt'},mmss(m[0])+' – '+mmss(m[1])),h('b',{},S.lang=='ro'?m[2]:m[3]),h('p',{},S.lang=='ro'?m[4]:m[5]),
-      h('a',{class:'lk',style:'margin-top:10px;background:var(--well)',href:c.u,target:'_blank',rel:'noopener'},t('sd_ig'))))])].flat(4);
+  const items=SDC.map(c=>h('div',{class:'sl clp'},h('div',{class:'igw'},h('blockquote',{class:'instagram-media','data-instgrm-permalink':c.u,'data-instgrm-version':'14'},h('a',{href:c.u,target:'_blank',rel:'noopener'},'@'+c.by))),
+    h('a',{class:'clby',href:c.u,target:'_blank',rel:'noopener'},'@'+c.by)));
+  const tr=h('div',{class:'slides',tabindex:'0'},items);
+  let cur=S.sdc;
+  const to=i=>{i=Math.max(0,Math.min(items.length-1,i));tr.scrollTo({left:items[i].offsetLeft-items[0].offsetLeft,behavior:RM?'auto':'smooth'})};
+  const dots=h('div',{class:'cdots'},items.map((_,i)=>h('button',{'aria-label':t('sld')+' '+(i+1),onclick:()=>to(i)})));
+  const pv=h('button',{class:'cnav pv','aria-label':t('prv'),onclick:()=>to(cur-1)},'‹'),nx=h('button',{class:'cnav nx','aria-label':t('nxt'),onclick:()=>to(cur+1)},'›');
+  const upd=()=>{cur=Math.max(0,Math.min(items.length-1,Math.round(tr.scrollLeft/((tr.clientWidth||1)+10))));S.sdc=cur;[...dots.children].forEach((d,j)=>d.classList.toggle('on',j==cur));pv.hidden=cur<=0;nx.hidden=cur>=items.length-1};
+  tr.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
+  tr.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){e.preventDefault();to(cur+1)}else if(e.key=='ArrowLeft'){e.preventDefault();to(cur-1)}});
+  requestAnimationFrame(()=>{if(cur)tr.scrollLeft=items[cur].offsetLeft-items[0].offsetLeft;upd()});
+  return [h('div',{class:'car clcar'},tr,pv,nx),dots];
 }
 function sdView(){
   const sg=seg([['all',t('sd_all')],['fav',L(PHL.fav)],['cl',t('sd_cl')]],S.sdv,k=>{S.sdv=k;sv('mh_sdv',k)});
-  if(S.sdv=='cl'){const n=SDC.reduce((a,c)=>a+c.m.length,0);
-    return [h('h2',{class:'pt'},t('sd')),h('p',{class:'note'},n+' '+t('sd_mom')+' · '+t('sd_clsrc')),sg,sdClips()];}
+  if(S.sdv=='cl')return [h('h2',{class:'pt'},t('sd')),h('p',{class:'note'},SDC.length+' '+t('sd_vids')+' · '+t('sd_clsrc')),sg,sdClips()];
   if(!SD){if(!SDE)sdLoad();
     return [h('h2',{class:'pt'},t('sd')),h('div',{class:'card'},h('p',{style:'margin:0'},SDE?t('sd_err'):t('sd_ld')),SDE?h('button',{class:'btn s',style:'margin-top:10px',onclick:()=>{SDE=false;render();sdLoad()}},t('sd_re')):null)];}
   const all=[...SD.keys()],l=S.sdv=='fav'?all.filter(i=>SDF[i]):all;
