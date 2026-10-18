@@ -827,7 +827,7 @@ const SDO={title:()=>t('sd'),name:sdName,chip:i=>SD[i][2]?t('sd_by')+' · '+SD[i
   fav:SDF,fk:'mh_sdfav',go:i=>window.open('https://www.pinterest.com/pin/'+SD[i][0]+'/','_blank','noopener')};
 function sdLoad(){SDE=false;fetch('specialday.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{SD=Array.isArray(d)?d:[];if(S.tab=='sd')render()}).catch(()=>{SDE=true;if(S.tab=='sd')render()})}
 /* Clips: real wedding reels kept on Instagram (official embed), shown as a side-swipe carousel like the photos. */
-const SDC=[['DXnZIn9iKdn','sonnyabdulphotography'],['DVLni43DKh5','nisa_cafarova_'],['DdZVA5zKZLZ','victor_ciupitu_videography'],['DXQBy_dADuy','storytellersfilms'],['DaN8-6VIOrP','sunrisefilmsart'],['DYhfNuSRtwj','gideonemoraesfilmes']].map(([id,by])=>({u:'https://www.instagram.com/p/'+id+'/',by}));
+const SDC=[['DXnZIn9iKdn','sonnyabdulphotography'],['DVLni43DKh5','nisa_cafarova_'],['DdZVA5zKZLZ','victor_ciupitu_videography'],['DdRqeqtOV_R','alexander_ason'],['DaN8-6VIOrP','sunrisefilmsart'],['CwIgX1po4iw','mc__films']].map(([id,by])=>({u:'https://www.instagram.com/p/'+id+'/',by}));
 let IGJ=false;
 function igEmbed(){if(window.instgrm&&instgrm.Embeds){instgrm.Embeds.process();return}if(IGJ)return;IGJ=true;const sc=document.createElement('script');sc.async=true;sc.src='https://www.instagram.com/embed.js';document.head.append(sc)}
 S.sdc=0;
