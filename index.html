@@ -185,11 +185,12 @@ header{transition:box-shadow .25s}header.sc{box-shadow:0 1px 0 var(--line)}
 .etq li:first-child{border-top:0;padding-top:0}
 .etq li:last-child{padding-bottom:0}
 
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:4;display:flex;background:color-mix(in srgb,var(--card) 80%,transparent);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border-top:1px solid var(--line);padding:6px 12px calc(6px + env(safe-area-inset-bottom,0px))}
-.tab{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11.5px;font-weight:700;line-height:1.1;padding:8px 2px 7px;color:var(--mute)}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:4;display:flex;background:color-mix(in srgb,var(--card) 80%,transparent);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
+.tab{position:relative;flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:700;line-height:1.1;padding:8px 1px 7px;color:var(--mute)}
+.tab span{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:clamp(9.5px,2.75vw,11.5px);letter-spacing:-.015em}
 .tab svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tab.on{color:var(--acc)}
-.ind{position:absolute;left:12px;top:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px));width:calc((100% - 24px)/5);border-radius:14px;background:color-mix(in srgb,var(--acc) 14%,transparent);transform:translateX(calc(var(--i,0)*100%));transition:transform .4s cubic-bezier(.32,.72,0,1);pointer-events:none}
+.ind{position:absolute;left:8px;top:6px;bottom:calc(6px + env(safe-area-inset-bottom,0px));width:calc((100% - 16px)/6);border-radius:14px;background:color-mix(in srgb,var(--acc) 14%,transparent);transform:translateX(calc(var(--i,0)*100%));transition:transform .4s cubic-bezier(.32,.72,0,1);pointer-events:none}
 #toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s;z-index:20;max-width:calc(100% - 32px);text-align:center}
 #toast.on{opacity:1}
 /* ---------- Poze (iPhone-style gallery) ---------- */
@@ -249,7 +250,7 @@ header{transition:box-shadow .25s}header.sc{box-shadow:0 1px 0 var(--line)}
 <footer id="ft"></footer>
 <div id="sheet" hidden></div>
 <div id="toast" role="status"></div>
-<nav class="tabs"><i class="ind"></i><button class="tab" data-t="mo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17M12 6h8M12 12h8M12 18h8"/></svg><span></span></button><button class="tab" data-t="sh"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="3"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span></span></button><button class="tab" data-t="po"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="7" r="2.5"/><circle cx="16" cy="7" r="2.5"/><path d="M4 20v-4a4 4 0 0 1 8 0v4M12 20v-4a4 4 0 0 1 8 0v4"/></svg><span></span></button><button class="tab" data-t="ed"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 9.5h18M8 5L6.5 9.5M13 5l-1.5 4.5M18 5l-1.5 4.5M10.5 12.5v4l3.5-2z"/></svg><span></span></button><button class="tab" data-t="ph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="9.5" r="1.8"/><path d="M3.5 17l5-5 4 4 2.5-2.5L20.5 19"/></svg><span></span></button></nav>
+<nav class="tabs"><i class="ind"></i><button class="tab" data-t="mo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17M12 6h8M12 12h8M12 18h8"/></svg><span></span></button><button class="tab" data-t="sh"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="3"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg><span></span></button><button class="tab" data-t="po"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="7" r="2.5"/><circle cx="16" cy="7" r="2.5"/><path d="M4 20v-4a4 4 0 0 1 8 0v4M12 20v-4a4 4 0 0 1 8 0v4"/></svg><span></span></button><button class="tab" data-t="ed"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 9.5h18M8 5L6.5 9.5M13 5l-1.5 4.5M18 5l-1.5 4.5M10.5 12.5v4l3.5-2z"/></svg><span></span></button><button class="tab" data-t="ph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="9.5" r="1.8"/><path d="M3.5 17l5-5 4 4 2.5-2.5L20.5 19"/></svg><span></span></button><button class="tab" data-t="sd"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.4 5 5.4.7-4 3.7 1 5.4-4.8-2.6-4.8 2.6 1-5.4-4-3.7 5.4-.7z"/></svg><span></span></button></nav>
 <script>
 {
 const SHOTS=`f1|fr|Cadru larg|Wide shot|La început și la sfârșit, ca să arăți unde ești și câtă lume e.|At the start and the end, to show where you are and how many people came.|Dă-te câțiva pași în spate sau treci pe lentila 0,5×. Ține orizontul drept și lasă oamenii mici în cadru.|Step back or switch to the 0.5× lens. Keep the horizon level and let people stay small in the frame.|Doar cadre largi. Fără apropieri, filmul pare făcut de la distanță.|Only wide shots. Without closer ones the film feels distant.|wedding wide shot venue
@@ -470,7 +471,7 @@ ft:'Made by GLC_TV. © 2026 All rights reserved.',lgl:'Schimbă în română',in
 /* ---------- state ---------- */
 const S={lang:ld('mh_l','ro'),tab:ld('mh_t','mo'),ev:ld('mh_ev','w'),ck:ld('mh_ck',{}),prep:ld('mh_pr',{}),flt:'all',sc:'all',pc:'all',es:'ex',wake:false,rs:false};
 if(S.lang!='en')S.lang='ro';
-if(!['mo','sh','po','ed','ph'].includes(S.tab))S.tab='mo';
+if(!['mo','sh','po','ed','ph','sd'].includes(S.tab))S.tab='mo';
 if(!EVI[S.ev])S.ev='w';
 if(typeof S.ck!='object'||!S.ck)S.ck={};
 if(ld('mh_v',1)<2){const b=S.ck.b;if(b&&typeof b=='object'){const n={};for(const k in b)n[+k>=3?+k+1:k]=b[k];S.ck.b=n;sv('mh_ck',S.ck)}sv('mh_v',2)}
@@ -672,9 +673,11 @@ const ICX='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L
 const ICL='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
 const ICR='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
 const ICG=c=>c==3?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h4v4H4zM10 4h4v4h-4zM16 4h4v4h-4zM4 10h4v4H4zM10 10h4v4h-4zM16 10h4v4h-4zM4 16h4v4H4zM10 16h4v4h-4zM16 16h4v4h-4z"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>';
+const PHO={title:()=>t('ph'),name:i=>albName(PHA[i]),chip:i=>albName(PHA[i]),src:phSrc,th:phTh,fav:FAV,fk:'mh_fav',
+  go:(i,close)=>{const k=PHA[i];close(()=>{S.pv='alb';sv('mh_pv','alb');openAlb(k)})}};
 function setCols(c){if(c==S.cols)return;S.cols=c;sv('mh_pc',c);const g=$('.pgrid');if(g)g.classList.toggle('c5',c==5);const z=$('.pz');if(z)z.innerHTML=ICG(c)}
-function phGrid(list){
-  const g=h('div',{class:'pgrid'+(S.cols==5?' c5':'')},list.map((i,j)=>h('button',{class:'pcell','aria-label':albName(PHA[i])+' · '+(j+1)+'/'+list.length,onclick:()=>viewer(list,j)},phTh(i),FAV[i]?h('i',{class:'pfv',html:HRT}):null)));
+function phGrid(list,o=PHO){
+  const g=h('div',{class:'pgrid'+(S.cols==5?' c5':'')},list.map((i,j)=>h('button',{class:'pcell','aria-label':o.name(i)+' · '+(j+1)+'/'+list.length,onclick:()=>viewer(list,j,o)},o.th(i),o.fav[i]?h('i',{class:'pfv',html:HRT}):null)));
   /* pinch to change grid density, like Photos */
   let d0=0;const dist=e=>Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
   g.addEventListener('touchstart',e=>{if(e.touches.length==2)d0=dist(e)},{passive:true});
@@ -703,12 +706,13 @@ function phView(){
    double tap: zoom to fill the screen at that point / back to fit; tap: hide or show the bars;
    mouse: wheel or trackpad pinch zooms at the cursor, drag pans, double-click zooms; keys: arrows, + - 0, Esc. */
 let PVW=null;
-function viewer(list,start){
+function viewer(list,start,o=PHO){
   if(PVW)return;
+  const FAV=o.fav;
   let cur=start,favCh=false;
-  const ov=h('div',{class:'pvw',role:'dialog','aria-modal':'true','aria-label':t('ph')});
+  const ov=h('div',{class:'pvw',role:'dialog','aria-modal':'true','aria-label':o.title()});
   const tr=h('div',{class:'ptr'});
-  const imgs=list.map(i=>h('img',{alt:albName(PHA[i]),decoding:'async',draggable:'false'}));
+  const imgs=list.map(i=>h('img',{alt:o.name(i),decoding:'async',draggable:'false',referrerpolicy:o.ref||null}));
   const sls=imgs.map(im=>h('div',{class:'psl'},im));tr.append(...sls);
   const ttl=h('b'),cnt=h('small'),chip=h('button',{class:'pchip'});
   const fav=h('button',{class:'pib',html:HRT});
@@ -716,12 +720,12 @@ function viewer(list,start){
   const pv=h('button',{class:'pib pnav pv','aria-label':t('ph_pv'),html:ICL,onclick:()=>goI(cur-1)});
   const nx=h('button',{class:'pib pnav nx','aria-label':t('ph_nx'),html:ICR,onclick:()=>goI(cur+1)});
   ov.append(tr,h('div',{class:'pbar tp'},x,h('div',{class:'pti'},ttl,cnt),h('span',{class:'pib sp'})),h('div',{class:'pbar bt'},chip,fav),pv,nx);
-  const load=j=>{if(j>=0&&j<list.length&&!imgs[j].src)imgs[j].src=phSrc(list[j])};
-  function upd(){const i=list[cur];ttl.textContent=albName(PHA[i]);cnt.textContent=(cur+1)+' / '+list.length;chip.textContent=albName(PHA[i])+' ›';
+  const load=j=>{if(j>=0&&j<list.length&&!imgs[j].src)imgs[j].src=o.src(list[j])};
+  function upd(){const i=list[cur];ttl.textContent=o.name(i);cnt.textContent=(cur+1)+' / '+list.length;chip.textContent=o.chip(i)+' ›';
     const on=!!FAV[i];fav.classList.toggle('on',on);fav.setAttribute('aria-pressed',String(on));fav.setAttribute('aria-label',t(on?'ph_fr':'ph_fa'));
     pv.style.visibility=cur>0?'':'hidden';nx.style.visibility=cur<list.length-1?'':'hidden';for(let j=cur-1;j<=cur+2;j++)load(j)}
-  fav.onclick=()=>{const i=list[cur];if(FAV[i])delete FAV[i];else FAV[i]=1;sv('mh_fav',FAV);favCh=true;upd();toast(t(FAV[i]?'ph_fon':'ph_foff'))};
-  chip.onclick=()=>{const k=PHA[list[cur]];close(()=>{S.pv='alb';sv('mh_pv','alb');openAlb(k)})};
+  fav.onclick=()=>{const i=list[cur];if(FAV[i])delete FAV[i];else FAV[i]=1;sv(o.fk,FAV);favCh=true;upd();toast(t(FAV[i]?'ph_fon':'ph_foff'))};
+  chip.onclick=()=>o.go(list[cur],close);
   for(const b of [x,fav,chip,pv,nx])b.addEventListener('pointerdown',e=>e.stopPropagation());
 
   /* ---- paging (track position) ---- */
@@ -802,7 +806,31 @@ function viewer(list,start){
   x.focus({preventScroll:true});
 }
 
-const VIEWS={mo:moView,sh:shView,po:poView,ed:edView,ph:phView};
+/* ---------- Special Day: same gallery as Poze, pins from Pinterest ----------
+   specialday.json = [[pin id, image path on i.pinimg.com, author], ...].
+   Images stay hosted by Pinterest; every photo links to its pin and names who posted it. */
+Object.assign(T.ro,{sd:'Special Day',sd_src:'de pe Pinterest',sd_by:'Pinterest',sd_ld:'Se încarcă pozele…',sd_err:'Pozele nu s-au putut încărca. Verifică internetul și încearcă din nou.',sd_re:'Reîncearcă',sd_all:'Toate',sd_none:'Nicio poză la Favorite încă. Deschide o poză și atinge inima.'});
+Object.assign(T.en,{sd:'Special Day',sd_src:'from Pinterest',sd_by:'Pinterest',sd_ld:'Loading photos…',sd_err:"Photos couldn't load. Check your connection and try again.",sd_re:'Try again',sd_all:'All',sd_none:'No favorites yet. Open a photo and tap the heart.'});
+let SD=null,SDE=false;
+let SDF=ld('mh_sdfav',{});if(typeof SDF!='object'||!SDF)SDF={};
+S.sdv=ld('mh_sdv','all');if(S.sdv!='fav')S.sdv='all';
+const PIN='https://i.pinimg.com/';
+const sdName=i=>SD[i][2]?SD[i][2]:t('sd');
+const SDO={title:()=>t('sd'),name:sdName,chip:i=>SD[i][2]?t('sd_by')+' · '+SD[i][2]:t('sd_by'),
+  src:i=>PIN+'736x/'+SD[i][1],th:i=>h('img',{src:PIN+'236x/'+SD[i][1],alt:'',loading:'lazy',decoding:'async'}),
+  fav:SDF,fk:'mh_sdfav',go:i=>window.open('https://www.pinterest.com/pin/'+SD[i][0]+'/','_blank','noopener')};
+function sdLoad(){SDE=false;fetch('specialday.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{SD=Array.isArray(d)?d:[];if(S.tab=='sd')render()}).catch(()=>{SDE=true;if(S.tab=='sd')render()})}
+function sdView(){
+  if(!SD){if(!SDE)sdLoad();
+    return [h('h2',{class:'pt'},t('sd')),h('div',{class:'card'},h('p',{style:'margin:0'},SDE?t('sd_err'):t('sd_ld')),SDE?h('button',{class:'btn s',style:'margin-top:10px',onclick:()=>{SDE=false;render();sdLoad()}},t('sd_re')):null)];}
+  const all=[...SD.keys()],l=S.sdv=='fav'?all.filter(i=>SDF[i]):all;
+  return [h('div',{class:'phd'},h('h2',{class:'pt'},t('sd')),l.length?h('button',{class:'pz','aria-label':t('ph_z'),html:ICG(S.cols),onclick:()=>setCols(S.cols==3?5:3)}):null),
+    h('p',{class:'note'},nPh(SD.length)+' · '+t('sd_src')),
+    seg([['all',t('sd_all')],['fav',L(PHL.fav)]],S.sdv,k=>{S.sdv=k;sv('mh_sdv',k)}),
+    l.length?phGrid(l,SDO):h('div',{class:'card'},h('p',{style:'margin:0'},t('sd_none')))];
+}
+
+const VIEWS={mo:moView,sh:shView,po:poView,ed:edView,ph:phView,sd:sdView};
 const tabs=[...document.querySelectorAll('.tab')];
 function render(anim){
   document.documentElement.lang=S.lang;
