@@ -45,6 +45,7 @@ small{color:var(--mute)}
 
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:3;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px 8px;max-width:560px;margin:auto;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%)}
 header small{display:block;font-size:13px}
+header small:empty{display:none}
 .lg{border:1.5px solid var(--line);border-radius:99px;padding:6px 14px;font-weight:700;background:var(--card)}
 main{padding:8px 20px 12px;max-width:560px;margin:auto}
 #v>h2:first-child{font-size:32px;letter-spacing:-.02em;margin-bottom:4px}
@@ -90,6 +91,7 @@ main{padding:8px 20px 12px;max-width:560px;margin:auto}
 .mrow.done .ck i{background:var(--acc);border-color:var(--acc)}
 .mrow.done .ck svg{opacity:1}
 .mb{flex:1;min-width:0;display:flex;align-items:center;gap:8px;text-align:left;padding:12px 14px 12px 0}
+.mth{flex:none;width:52px;height:52px;border-radius:12px;object-fit:cover;background:var(--well);margin-right:4px}
 .mb>span{flex:1;min-width:0}
 .mb b{display:block;font-weight:700;line-height:1.3}
 .mb small{display:block;font-size:13px;margin-top:2px}
@@ -176,6 +178,25 @@ header{transition:box-shadow .25s}header.sc{box-shadow:0 1px 0 var(--line)}
 .tc{flex:none;width:96px;font:500 13px/1.5 var(--tc);font-variant-numeric:tabular-nums}
 .tc em{display:block;font-style:normal;color:var(--mute);font-size:12px}
 .note{color:var(--mute);font-size:14px;margin:8px 0}
+/* tiles: illustration-first grid */
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{display:block;width:100%;text-align:left;padding:8px 8px 12px;border-radius:20px;background:var(--card);box-shadow:0 1px 2px rgba(20,10,30,.04),0 6px 18px -10px rgba(20,10,30,.18)}
+.tile:active{transform:scale(.97)}
+.tile .th{width:100%;height:auto;aspect-ratio:100/80;margin:0 0 10px;border-radius:14px}
+.tile b{display:block;font-size:15px;font-weight:700;line-height:1.25;padding:0 4px;text-wrap:balance}
+.tiles.sm .tile b{font-size:14px}
+/* video cards (Montaj) */
+.vids{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -20px;padding:2px 20px 6px;scroll-padding:0 20px}
+.vids::-webkit-scrollbar{display:none}
+.vc{flex:none;width:82%;scroll-snap-align:start}
+.vf{position:relative;display:block;width:100%;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;padding:0}
+.vf img{display:block;width:100%;height:100%;object-fit:cover;opacity:.92;transition:opacity .2s}
+.vf:active img{opacity:.75}
+.vf iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vf .pl{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+.vf .pl svg{width:22px;height:22px;margin-left:3px;fill:var(--acc)}
+.vc b{display:block;font-size:14px;font-weight:600;line-height:1.3;margin:8px 4px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vc small{display:block;font-size:12px;margin:2px 4px 0;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .srow{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}
 .tg{flex:none;width:51px;height:31px;border-radius:99px;background:color-mix(in srgb,var(--ink) 18%,transparent);position:relative;transition:background .25s}
 .tg::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.32,.72,0,1)}
@@ -434,14 +455,14 @@ const VID=[
 ['9XIMwjnjbFc','iPhone 11 Pro Cinematic Wedding','The Run and Gun Shooter']]]];
 const MORE=[['Majorat','18th birthday','majorat best moments'],['Aniversare','Birthday','aniversare best moments'],['Petrecere','Party','aftermovie petrecere club'],['Gală și corporate','Gala and corporate','aftermovie eveniment corporate']];
 const PREP=[
-['Baterie la 100% și o baterie externă în buzunar','Battery at 100% and a power bank in your pocket'],
-['Cel puțin 20 GB liberi. Un minut 4K ocupă cam 200–400 MB','At least 20 GB free. One minute of 4K takes roughly 200–400 MB'],
-['Lentilele șterse cu o cârpă curată','Lenses wiped with a clean cloth'],
-['Modul Nu deranja pornit, ca să nu-ți întrerupă un apel filmarea','Do Not Disturb on, so a call cannot interrupt your recording'],
-['Formatul ales: vertical sau orizontal','Format chosen: vertical or horizontal'],
-['Programul evenimentului: la ce oră e fiecare moment','The event schedule: what time each moment happens'],
-['O vorbă cu fotograful oficial, ca să nu-i intri în cadru','A word with the hired photographer, so you stay out of their frame'],
-['Muzica pentru montaj, aleasă dinainte','Music for the edit, chosen in advance']];
+['Baterie 100% + powerbank','Battery 100% + power bank'],
+['20 GB liberi','20 GB free'],
+['Lentile curate','Clean lenses'],
+['Nu deranja','Do Not Disturb'],
+['Vertical sau orizontal','Vertical or horizontal'],
+['Programul evenimentului','Event schedule'],
+['Vorbă cu fotograful','Talk to the photographer'],
+['Muzica pentru montaj','Music for the edit']];
 const ETQ=[
 ['Nu sta în fața fotografului și a videografului plătiți. Ei au prioritate.','Do not stand in front of the hired photographer and videographer. They have priority.'],
 ['Fără bliț în biserică. Întreabă preotul unde ai voie să stai.','No flash in church. Ask the priest where you may stand.'],
@@ -562,7 +583,7 @@ function slides(id,label){
   let fix=()=>{};
   const fig=(p,alt,cap,lazy)=>{const at={src:p.src,alt,width:'797',height:'637',decoding:'async',onerror:e=>{e.target.closest('.sl').remove();fix()}};if(lazy)at.loading='lazy';return h('figure',{class:'sl'},h('div',{class:'pw'},h('img',at),p.by&&h('figcaption',{},h('a',{href:'https://unsplash.com/photos/'+p.id,target:'_blank',rel:'noopener noreferrer'},t('by')+' '+p.by+' · Unsplash'))),cap)};
   if(ph)items.push(fig(ph,label));
-  gal.forEach(g=>items.push(fig(g,L(g.n),h('div',{class:'cap'},h('b',{},L(g.n)),h('p',{},L(g.d))),items.length>1)));
+  gal.forEach(g=>items.push(fig(g,L(g.n),h('div',{class:'cap'},h('b',{},L(g.n))),items.length>1)));
   if(D[id])items.push(h('div',{class:'sl'},thumb(id,1,label)));
   if(items.length<2)return items[0]||null;
   let cur=0;
@@ -603,9 +624,10 @@ const lks=(q,ks,lead)=>h('div',{class:'lks'},lead&&h('span',{class:'lkl'},lead),
 const exSec=(q,ks,note)=>h('div',{class:'sec'},h('h3',{},t('exr')),lks(q,ks),h('p',{class:'note'},t(note)));
 const sec=(k,txt,cls)=>h('div',{class:'sec'},h('h3',{},t(k)),h('p',{class:cls},txt));
 const shotRow=(s,on)=>h('button',{class:'row',onclick:on},thumb(s.id),h('span',{},h('b',{},L(s.n)),h('small',{},L(s.w))),h('i',{class:'chev','aria-hidden':'true'},'›'));
-function shotSheet(s,back){openSheet(p=>put(p,head(t(s.c),L(s.n),back),slides(s.id,L(s.n)),s.c=='mv'?exSec(s.q,['yt','tt','pin'],'exv'):exSec(s.q,['pin','gi','uns'],'exp'),sec('when',L(s.w)),sec('how',L(s.h)),sec('mist',L(s.m))))}
-function poseSheet(o){openSheet(p=>put(p,head(t(o.c),L(o.n)),slides(o.id,L(o.n)),exSec(o.q,['pin','gi','uns'],'exp'),sec('pos',L(o.h)),sec('say',L(o.s),'say')))}
-function momSheet(m){const open=()=>openSheet(p=>{const on=!!cks()[m.i];put(p,head(L(EVI[S.ev].n)+' · '+L(m.ph.n),L(m.n)),m.must&&h('small',{class:'must'},t('must')),slides('m_'+S.ev+m.i,L(m.n)),sec('what',L(m.tip)),exSec(m.q,['gi','yt','tt'],'exm'),h('div',{class:'sec'},h('h3',{},t('rec')),m.sh.map(id=>shotRow(SHI[id],()=>shotSheet(SHI[id],open))),h('p',{class:'note'},t('rech'))),h('button',{class:'btn'+(on?' dn':''),onclick:()=>{tog(m.i);render();redraw()}},t(on?'undo':'gotm')))});open()}
+const tile=(id,name,on)=>h('button',{class:'tile',onclick:on},thumb(id,0,name),h('b',{},name));
+function shotSheet(s,back){openSheet(p=>put(p,head(t(s.c),L(s.n),back),slides(s.id,L(s.n))))}
+function poseSheet(o){openSheet(p=>put(p,head(t(o.c),L(o.n)),slides(o.id,L(o.n))))}
+function momSheet(m){const open=()=>openSheet(p=>{const on=!!cks()[m.i];put(p,head(L(EVI[S.ev].n)+' · '+L(m.ph.n),L(m.n)),m.must&&h('small',{class:'must'},t('must')),slides('m_'+S.ev+m.i,L(m.n)),h('div',{class:'sec'},h('h3',{},t('rec')),h('div',{class:'tiles sm'},m.sh.map(id=>tile(id,L(SHI[id].n),()=>shotSheet(SHI[id],open))))),h('button',{class:'btn'+(on?' dn':''),onclick:()=>{tog(m.i);render();redraw()}},t(on?'undo':'gotm')))});open()}
 
 /* ---------- views ---------- */
 const chips=(list,cur,set)=>h('div',{class:'chips'},list.map(([k,l])=>h('button',{class:'chip'+(k==cur?' on':''),'aria-pressed':String(k==cur),onclick:()=>{const ch=k!=cur;set(k);render();if(ch)play($('#v'))}},l)));
@@ -618,11 +640,11 @@ function moView(){
   const show=m=>S.flt=='all'||(S.flt=='must'&&m.must)||(S.flt=='left'&&!ck[m.i]);
   const groups=ev.ph.map(p=>{const ms=p.ms.filter(show);return ms.length?[h('h3',{},L(p.n)),h('div',{class:'group'},ms.map(m=>h('div',{class:'mrow'+(ck[m.i]?' done':'')},
     h('button',{class:'ck','aria-pressed':String(!!ck[m.i]),'aria-label':t('got')+': '+L(m.n),html:CK,onclick:()=>{tog(m.i);render()}}),
-    h('button',{class:'mb',onclick:()=>momSheet(m)},h('span',{},h('b',{},L(m.n)),h('small',{},m.must&&h('span',{class:'must'},t('must')),(m.must?' · ':'')+nShots(m.sh.length)+(GAL['m_'+S.ev+m.i]?' · '+GAL['m_'+S.ev+m.i].length+(S.lang=='ro'?' poziții':' poses'):''))),h('i',{class:'chev','aria-hidden':'true'},'›')))))]:[]}).flat();
-  return [h('h2',{},t('mo')),h('p',{class:'note'},t('moh')),
+    h('button',{class:'mb',onclick:()=>momSheet(m)},PHOTOS['m_'+S.ev+m.i]?h('img',{class:'mth',src:PHOTOS['m_'+S.ev+m.i].src,alt:'',loading:'lazy',decoding:'async'}):null,h('span',{},h('b',{},L(m.n)),m.must&&h('small',{},h('span',{class:'must'},t('must')))),h('i',{class:'chev','aria-hidden':'true'},'›')))))]:[]}).flat();
+  return [h('h2',{},t('mo')),
     chips(EV.map(e=>[e.k,L(e.n)]),S.ev,k=>{S.ev=k;S.rs=false;sv('mh_ev',k)}),
-    nx?h('div',{class:'callout'},h('div',{class:'kick'},h('i',{class:'dot'}),t('next')+' · '+L(nx.ph.n)),h('b',{class:'nt'},L(nx.n)),h('p',{},L(nx.tip)),h('div',{class:'cta'},h('button',{class:'btn s',onclick:()=>momSheet(nx)},t('see')),h('button',{class:'btn s gh',onclick:()=>{tog(nx.i);render();play($('#v .callout'))}},t('got'))))
-      :h('div',{class:'callout'},h('b',{class:'nt',style:'margin-top:0'},t('alld')),h('p',{},t('alldp')),h('div',{class:'cta'},h('button',{class:'btn s',onclick:()=>go('ed')},t('toed')))),
+    nx?h('div',{class:'callout'},h('div',{class:'kick'},h('i',{class:'dot'}),t('next')+' · '+L(nx.ph.n)),h('b',{class:'nt'},L(nx.n)),h('div',{class:'cta'},h('button',{class:'btn s',onclick:()=>momSheet(nx)},t('see')),h('button',{class:'btn s gh',onclick:()=>{tog(nx.i);render();play($('#v .callout'))}},t('got'))))
+      :h('div',{class:'callout'},h('b',{class:'nt',style:'margin-top:0'},t('alld')),h('div',{class:'cta'},h('button',{class:'btn s',onclick:()=>go('ed')},t('toed')))),
     h('div',{class:'stats'},h('div',{class:'stat'},h('b',{},String(done),h('span',{},'/'+all.length)),h('small',{},t('caught'))),h('div',{class:'stat'},h('b',{},String(md),h('span',{},'/'+must.length)),h('small',{},t('mustf'))),h('div',{class:'stat'},h('b',{},String(all.length-done)),h('small',{},t('left')))),
     h('div',{class:'bar'},h('i',{style:'width:'+Math.round(done/all.length*100)+'%'})),
     seg([['all',t('all')],['must',t('mustf')],['left',t('left')]],S.flt,k=>S.flt=k),
@@ -631,24 +653,24 @@ function moView(){
 }
 function shView(){
   const cats=['fr','an','mv','lt'];
-  return [h('h2',{},t('sh')),h('p',{class:'note'},t('shh')),chips([['all',t('all')],...cats.map(c=>[c,t(c)])],S.sc,k=>S.sc=k),
-    cats.filter(c=>S.sc=='all'||S.sc==c).map(c=>[h('h3',{},t(c)),SH.filter(s=>s.c==c).map(s=>shotRow(s,()=>shotSheet(s)))])];
+  return [h('h2',{},t('sh')),chips([['all',t('all')],...cats.map(c=>[c,t(c)])],S.sc,k=>S.sc=k),
+    cats.filter(c=>S.sc=='all'||S.sc==c).map(c=>[h('h3',{},t(c)),h('div',{class:'tiles'},SH.filter(s=>s.c==c).map(s=>tile(s.id,L(s.n),()=>shotSheet(s))))])];
 }
 function poView(){
   const cats=['cu','gr','pt','sp'];
-  return [h('h2',{},t('po')),h('p',{class:'note'},t('poh')),chips([['all',t('all')],...cats.map(c=>[c,t(c)])],S.pc,k=>S.pc=k),
-    cats.filter(c=>S.pc=='all'||S.pc==c).map(c=>[h('h3',{},t(c)),PO.filter(o=>o.c==c).map(o=>h('button',{class:'row',onclick:()=>poseSheet(o)},thumb(o.id),h('span',{},h('b',{},L(o.n)),h('small',{},L(o.s))),h('i',{class:'chev','aria-hidden':'true'},'›')))])];
+  return [h('h2',{},t('po')),chips([['all',t('all')],...cats.map(c=>[c,t(c)])],S.pc,k=>S.pc=k),
+    cats.filter(c=>S.pc=='all'||S.pc==c).map(c=>[h('h3',{},t(c)),h('div',{class:'tiles'},PO.filter(o=>o.c==c).map(o=>tile(o.id,L(o.n),()=>poseSheet(o))))])];
 }
 const PLAY='<svg class="dg" viewBox="0 0 100 80" aria-hidden="true"><rect class="fl-c" x="16" y="14" width="68" height="52" rx="12"/><path class="fl-a" d="M43 28v24l21-12z"/></svg>';
 function edView(){
   const out=[h('h2',{},t('ed')),seg([['ex',t('ex')],['prep',t('prep')]],S.es,k=>S.es=k)];
   if(S.es=='ex'){
-    out.push(h('p',{class:'note'},t('edh')),VID.map(c=>[h('h3',{},L(c)),c[3].map(v=>ext('row','https://www.youtube.com/watch?v='+v[0],h('span',{class:'th',html:PLAY}),h('span',{},h('b',{},v[1]),h('small',{},v[2]+' · YouTube')),h('i',{class:'chev out','aria-hidden':'true'},'↗'))),lks(c[2],['yt','tt'],t('more'))]),
-      h('h3',{},t('other')),h('div',{class:'group'},MORE.map(m=>h('div',{class:'srow'},h('b',{},L(m)),lks(m[2],['yt','tt'])))));
+    out.push(VID.map(c=>[h('h3',{},L(c)),h('div',{class:'vids'},c[3].map(v=>{const f=h('button',{class:'vf','aria-label':v[1]},h('img',{src:'https://i.ytimg.com/vi/'+v[0]+'/hqdefault.jpg',alt:'',loading:'lazy',decoding:'async'}),h('span',{class:'pl',html:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>'}));
+      f.onclick=()=>{f.replaceChildren(h('iframe',{src:'https://www.youtube-nocookie.com/embed/'+v[0]+'?autoplay=1&playsinline=1&rel=0',allow:'autoplay; encrypted-media; picture-in-picture; fullscreen',allowfullscreen:'',title:v[1]}));f.onclick=null};
+      return h('div',{class:'vc'},f,h('b',{},v[1]),h('small',{},v[2]))}))]));
   }else{
-    out.push(h('h3',{style:'margin-top:4px'},t('chk')),h('div',{class:'group'},PREP.map((p,i)=>h('div',{class:'mrow'+(S.prep[i]?' done':'')},h('button',{class:'ck','aria-pressed':String(!!S.prep[i]),'aria-label':L(p),html:CK,onclick:()=>{if(S.prep[i])delete S.prep[i];else S.prep[i]=1;sv('mh_pr',S.prep);render()}}),h('div',{class:'mb'},h('span',{},h('b',{style:'font-weight:600'},L(p))))))),
-      h('div',{class:'group'},h('button',{class:'srow',role:'switch','aria-checked':String(S.wake),onclick:wake},h('span',{},h('b',{style:'display:block'},t('wake')),h('small',{},t('wakeh'))),h('i',{class:'tg'+(S.wake?' on':'')}))),
-      h('h3',{},t('etq')),h('div',{class:'callout'},h('ul',{class:'etq'},ETQ.map(e=>h('li',{},L(e))))));
+    out.push(h('div',{class:'group',style:'margin-top:4px'},PREP.map((p,i)=>h('div',{class:'mrow'+(S.prep[i]?' done':'')},h('button',{class:'ck','aria-pressed':String(!!S.prep[i]),'aria-label':L(p),html:CK,onclick:()=>{if(S.prep[i])delete S.prep[i];else S.prep[i]=1;sv('mh_pr',S.prep);render()}}),h('div',{class:'mb'},h('span',{},h('b',{style:'font-weight:600'},L(p))))))),
+      h('div',{class:'group'},h('button',{class:'srow',role:'switch','aria-checked':String(S.wake),onclick:wake},h('span',{},h('b',{style:'display:block'},t('wake'))),h('i',{class:'tg'+(S.wake?' on':'')}))));
   }
   return out;
 }
@@ -662,8 +684,8 @@ const PHA='dcrddcabdbbbbfgdbbbabpcbfaaaaaaaaababcfraaprcaaaarabcpaaaccacaarrapfa
 const PHN=PHA.length;
 const PHK=['c','b','g','d','r','f','p','a'];
 const PHL={all:['Toate pozele','All photos'],fav:['Favorite','Favorites'],c:['Cuplu','Couple'],b:['Pregătiri mireasă','Bride getting ready'],g:['Pregătiri mire','Groom getting ready'],d:['Detalii','Details'],r:['Ceremonie','Ceremony'],f:['Familie și prieteni','Family & friends'],p:['Petrecere','Party'],a:['Cadre artistice','Artistic shots']};
-Object.assign(T.ro,{ph:'Poze',ph_lib:'Bibliotecă',ph_alb:'Albume',ph_none:'Nicio poză aici încă. Deschide o poză și atinge inima ca s-o adaugi la Favorite.',ph_z:'Schimbă mărimea grilei',ph_cl:'Închide',ph_pv:'Poza anterioară',ph_nx:'Poza următoare',ph_fa:'Adaugă la Favorite',ph_fr:'Scoate din Favorite',ph_fon:'Adăugată la Favorite',ph_foff:'Scoasă din Favorite',ph_alc:'albume'});
-Object.assign(T.en,{ph:'Photos',ph_lib:'Library',ph_alb:'Albums',ph_none:'No photos here yet. Open a photo and tap the heart to add it to Favorites.',ph_z:'Change grid size',ph_cl:'Close',ph_pv:'Previous photo',ph_nx:'Next photo',ph_fa:'Add to Favorites',ph_fr:'Remove from Favorites',ph_fon:'Added to Favorites',ph_foff:'Removed from Favorites',ph_alc:'albums'});
+Object.assign(T.ro,{ph:'Poze',ph_lib:'Bibliotecă',ph_alb:'Albume',ph_none:'Nicio poză încă.',ph_z:'Schimbă mărimea grilei',ph_cl:'Închide',ph_pv:'Poza anterioară',ph_nx:'Poza următoare',ph_fa:'Adaugă la Favorite',ph_fr:'Scoate din Favorite',ph_fon:'Adăugată la Favorite',ph_foff:'Scoasă din Favorite',ph_alc:'albume'});
+Object.assign(T.en,{ph:'Photos',ph_lib:'Library',ph_alb:'Albums',ph_none:'No photos yet.',ph_z:'Change grid size',ph_cl:'Close',ph_pv:'Previous photo',ph_nx:'Next photo',ph_fa:'Add to Favorites',ph_fr:'Remove from Favorites',ph_fon:'Added to Favorites',ph_foff:'Removed from Favorites',ph_alc:'albums'});
 const nPh=n=>S.lang=='ro'?(n==1?'1 poză':n+(n%100>=20||(n>0&&n%100==0)?' de poze':' poze')):(n==1?'1 photo':n+' photos');
 const pad3=i=>String(i+1).padStart(3,'0');
 const phSrc=i=>'poze/'+pad3(i)+'.jpg';
@@ -815,8 +837,8 @@ function viewer(list,start,o=PHO){
 /* ---------- Special Day: same gallery as Poze, pins from Pinterest ----------
    specialday.json = [[pin id, image path on i.pinimg.com, author], ...].
    Images stay hosted by Pinterest; every photo links to its pin and names who posted it. */
-Object.assign(T.ro,{sd:'Special Day',sd_src:'de pe Pinterest',sd_by:'Pinterest',sd_ld:'Se încarcă pozele…',sd_err:'Pozele nu s-au putut încărca. Verifică internetul și încearcă din nou.',sd_re:'Reîncearcă',sd_all:'Toate',sd_cl:'Clipuri',sd_clsrc:'de pe Instagram',sd_vids:'clipuri',sd_none:'Nicio poză la Favorite încă. Deschide o poză și atinge inima.'});
-Object.assign(T.en,{sd:'Special Day',sd_src:'from Pinterest',sd_by:'Pinterest',sd_ld:'Loading photos…',sd_err:"Photos couldn't load. Check your connection and try again.",sd_re:'Try again',sd_all:'All',sd_cl:'Clips',sd_clsrc:'from Instagram',sd_vids:'clips',sd_none:'No favorites yet. Open a photo and tap the heart.'});
+Object.assign(T.ro,{sd:'Special Day',sd_src:'de pe Pinterest',sd_by:'Pinterest',sd_ld:'Se încarcă pozele…',sd_err:'Pozele nu s-au putut încărca. Verifică internetul și încearcă din nou.',sd_re:'Reîncearcă',sd_all:'Toate',sd_cl:'Clipuri',sd_clsrc:'de pe Instagram',sd_vids:'clipuri',sd_none:'Nicio poză încă.'});
+Object.assign(T.en,{sd:'Special Day',sd_src:'from Pinterest',sd_by:'Pinterest',sd_ld:'Loading photos…',sd_err:"Photos couldn't load. Check your connection and try again.",sd_re:'Try again',sd_all:'All',sd_cl:'Clips',sd_clsrc:'from Instagram',sd_vids:'clips',sd_none:'No photos yet.'});
 let SD=null,SDE=false;
 let SDF=ld('mh_sdfav',{});if(typeof SDF!='object'||!SDF)SDF={};
 S.sdv=ld('mh_sdv','all');if(S.sdv!='fav'&&S.sdv!='cl')S.sdv='all';
@@ -862,7 +884,7 @@ const VIEWS={mo:moView,sh:shView,po:poView,ed:edView,ph:phView,sd:sdView};
 const tabs=[...document.querySelectorAll('.tab')];
 function render(anim){
   document.documentElement.lang=S.lang;
-  $('#tg').textContent=t('tag');$('#lg').textContent=S.lang=='ro'?'EN':'RO';$('#lg').setAttribute('aria-label',t('lgl'));$('#ft').textContent=t('ft');
+  $('#tg').textContent='';$('#lg').textContent=S.lang=='ro'?'EN':'RO';$('#lg').setAttribute('aria-label',t('lgl'));$('#ft').textContent=t('ft');
   tabs.forEach((b,i)=>{const on=b.dataset.t==S.tab;b.classList.toggle('on',on);b.querySelector('span').textContent=t(b.dataset.t);if(on){b.setAttribute('aria-current','page');$('.ind').style.setProperty('--i',i)}else b.removeAttribute('aria-current')});
   const v=$('#v');v.replaceChildren(...VIEWS[S.tab]().flat(3).filter(Boolean));
   if(anim){play(v);scrollTo(0,0)}
